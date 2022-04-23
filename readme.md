@@ -1,9 +1,9 @@
 |  Method  | URL | Description  | 
 |  ----------  | ---------- | ------------  | 
-|  GET  | / | Index  |  Muestra la pagina de inicio  | 
-|  GET  | / | Register  |  Para regitrar un usuario  | 
-|  POST  | / | Register  |  Para regitrar un usuario  | 
-|  GET  | / | Login  |  Para loguear un usuario  | 
+|  GET  | /Index  |  Muestra la pagina de inicio  | 
+|  GET  | /Register  |  Para regitrar un usuario  | 
+|  POST  | /  Register  |  Para regitrar un usuario  | 
+|  GET  | /  Login  |  Para loguear un usuario  | 
 |  POST  | / | Login  |  Para loguear un usuario  | 
 |  POST  | / | LogOUT  |  Para cerrar sesion  | 
 |  GET  | / | collecticions  |  Muestra todas las colecciones  | 
