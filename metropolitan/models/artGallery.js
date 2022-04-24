@@ -4,29 +4,22 @@ const { Schema, model } = require("mongoose");
 // No es seguro que los parametros extraidos de la API tengan que estar en el modelo, en teoria se construye un
 //documento de tipo arte al crear una coleccion, y si guardamos ya estos parametros no habra que acceder a la API
 // cada vez que se visualice un arte
-const artItemSchema = new Schema(
+const artGallerySchema = new Schema(
     {
-        bigImg: {
+        name: {
             type: String,
 
         },
-        smallImg: {
+        location: {
+            type: {
+                type: String
+            },
+            coordinates: [Number]
+        },
+        Description: {
             type: String,
 
         },
-        title: {
-            type: String,
-
-        },
-        artist: {
-            type: String,
-
-        },
-        likes: {
-            type: Number,
-
-        },
-        artGallery: { type: Schema.Types.ObjectId, ref: 'artGallery' }
     },
 
     {
@@ -35,6 +28,6 @@ const artItemSchema = new Schema(
     }
 );
 
-const ArtItem = model("ArtItem", artItemSchema);
+const ArtGallery = model("ArtGallery", artGallerySchema);
 
-module.exports = ArtItem;
+module.exports = ArtGallery;
