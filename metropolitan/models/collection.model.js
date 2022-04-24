@@ -20,6 +20,7 @@ const collectionSchema = new Schema(
             type: [String],
             required: true,
         },
+        artList: [{ type: Schema.Types.ObjectId, ref: 'Art' }],
     },
 
     {

@@ -1,29 +1,35 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
+
+// No es seguro que los parametros extraidos de la API tengan que estar en el modelo, en teoria se construye un
+//documento de tipo arte al crear una coleccion, y si guardamos ya estos parametros no habra que acceder a la API
+// cada vez que se visualice un arte
 const artSchema = new Schema(
     {
+        bigImg: {
+            type: String,
+
+        },
+        smallImg: {
+            type: String,
+
+        },
         title: {
             type: String,
-            // unique: true -> Ideally, should be unique, but its up to you
+
         },
-        password: String,
-        email: String,
-        // comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-        favorites: [{ type: Schema.Types.ObjectId, ref: 'Art' }],
-        username: {
+        artist: {
             type: String,
-            enum: ["ADMIN", "MODERATOR", "USER"],
-            default: "USER"
+
         },
-        profileImg: {
-            type: String,
-            default: "",
+        likes: {
+            type: Number,
+
         },
     },
 
     {
-        // this second object adds extra properties: `createdAt` and `updatedAt`
+
         timestamps: true,
     }
 );
