@@ -1,0 +1,30 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Cambiar Categoria</h1>
+
+            <hr>
+
+            <form action="/students/{{id}}/roles" method="POST">
+
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">{{username}}</label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="roles" class="form-label">Roles</label>
+                    <select name="roles" class="form-select">
+                        <option name='STUDENT' value="STUDENT">STUDENT</option>
+                        <option name='TA' value="TA">TA</option>
+                        <option name='DEV' value="DEV">DEVELOPER</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Cambiar </button>
+                <a href="/" class="btn btn-dark">Volver al incio</a>
+            </form>
+        </div>
+    </div>
+</div>

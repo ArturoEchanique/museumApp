@@ -1,0 +1,28 @@
+<form class="row g-3" id="login" action="/Login" method="POST">
+    <h3>Iniciar Sesion</h3>
+    <hr>
+    <div class="col-md-12">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="col-md-12">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <div class="col-md-12">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group">
+            <span class="input-group-text" id="email">@</span>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+    </div>
+    {{#if errorMessage}}
+    <div class="col-md-12" id="errorMessage">
+        <p>{{errorMessage}}</p>
+    </div>
+    {{/if}}
+
+    <div class="col-12">
+        <button class="btn btn-dark" type="submit">Entrar</button>
+    </div>
+</form>

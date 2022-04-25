@@ -1,0 +1,23 @@
+<div class="container">
+    <h3 id="titU">Ususarios</h3>
+    <div class="row">
+        <div class="card col-6" style="width: 18rem;">
+            <img src="{{profileImg}}" class="card-img-top" alt="#">
+
+        </div>
+        <div class="card-body col-6">
+            <h5 class="card-title">{{username}}</h5>
+            <p class="card-text">{{email}}</p>
+            <p class="card-text">{{role}}</p>
+            <p class="card-text">{{favorites}}</p>
+            <a href="/users/{{id}}" class="btn btn-primary">Ver Perfil</a>
+            <hr>
+            {{!-- {{#if roleCheck}} --}}
+            <button href="#" class="btn btn-primary">Cambiar Role</button>
+
+            {{!-- {{/if}} --}}
+        </div>
+
+    </div>
+
+</div>
