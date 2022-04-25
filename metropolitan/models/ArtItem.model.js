@@ -6,31 +6,12 @@ const { Schema, model } = require("mongoose");
 // cada vez que se visualice un arte
 const artItemSchema = new Schema(
     {
-        bigImg: {
-            type: String,
-
-        },
-        smallImg: {
-            type: String,
-
-        },
-        title: {
-            type: String,
-
-        },
-        artist: {
-            type: String,
-
-        },
         likes: {
             type: Number,
-
         },
         artGallery: { type: Schema.Types.ObjectId, ref: 'artGallery' }
     },
-
     {
-
         timestamps: true,
     }
 );

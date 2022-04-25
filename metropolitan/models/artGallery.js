@@ -6,9 +6,11 @@ const { Schema, model } = require("mongoose");
 // cada vez que se visualice un arte
 const artGallerySchema = new Schema(
     {
+        apiId: {
+            type: String,
+        },
         name: {
             type: String,
-
         },
         location: {
             type: {
@@ -16,17 +18,14 @@ const artGallerySchema = new Schema(
             },
             coordinates: [Number]
         },
-        Description: {
+        description: {
             type: String,
-
         },
     },
-
     {
-
         timestamps: true,
     }
-);
+)
 
 const ArtGallery = model("ArtGallery", artGallerySchema);
 

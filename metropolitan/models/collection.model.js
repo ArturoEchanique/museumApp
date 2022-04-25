@@ -9,23 +9,18 @@ const collectionSchema = new Schema(
         },
         description: {
             type: String,
-
         },
         bgImage: {
             type: String,
-
         },
-        //los parametros podrian estar pre harcodeados, ejemplo: isHighihgth: value, hasImage: value.
         params: {
-            type: [String],
+            type: ['String'],
             required: true,
         },
-        artList: [{ type: Schema.Types.ObjectId, ref: 'Art' }],
+        artItemsList: [{ type: Schema.Types.ObjectId, ref: 'ArtItem' }],
     },
-
     {
-        // this second object adds extra properties: `createdAt` and `updatedAt`
-        timestamps: true,
+        timestamps: true
     }
 );
 
