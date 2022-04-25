@@ -8,12 +8,14 @@ router.get('/Register', (req, res, next) => res.render('auth/sing-up'))
 
 router.post('/Register', (req, res, next) => {
 
-    const { username, password, email, profileImg } = req.body
+    let newUser = { username, password, email, profileImg } = req.body
+
+    if (profileImg == "") profileImg = "https://painting-planet.com/images2/autorretrato-en-sombrero-de-fieltro-vincent-van_1.jpg"
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => User.create({...req.body, password: hashedPassword }))
+        .then(hashedPassword => User.create({ username, password, email, profileImg, password: hashedPassword }))
         .then(createdUser => res.redirect('/'))
         .catch(error => next(error))
 })

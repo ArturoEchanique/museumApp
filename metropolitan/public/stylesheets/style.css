@@ -16,6 +16,11 @@
     margin-right: 400px;
 }
 
+#navbar {
+    border-bottom: solid;
+    height: 100px;
+}
+
 .navbar form button {
     background: transparent;
     border: none;
@@ -37,8 +42,16 @@
     margin: 20px;
 }
 
+#users {
+    background-color: transparent;
+    color: black;
+}
 
-/* body {
-    background-image: url('../images/met.jpg');
-    color: antiquewhite;
-} */
+#editButton {
+    display: flex;
+}
+
+body {
+    background-image: url('https://sothebys-com.brightspotcdn.com/dims4/default/cc0d0f4/2147483647/strip/true/crop/3493x1976+0+315/resize/1156x654!/quality/90/?url=https%3A%2F%2Fsothebys.brightspotcdn.com%2F1d%2F6e%2F7f23844d45d5b6aef37d9d7b8e50%2F5.%20New%20European%20Paintings%20Galleries_Gallery%20601_Italian%20Baroque_MMA.jpg');
+    background-size: cover;
+}

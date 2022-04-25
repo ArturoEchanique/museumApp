@@ -1,21 +1,24 @@
-<div class="container">
+<div class="container-bg">
     <h3 id="titU">Ususarios</h3>
     <div class="row">
         {{#each user}}
-        <div class="card col-6" style="width: 18rem;">
-            <img src="{{profileImg}}" class="card-img-top" alt="#">
+        <div id="users" class="card col-6" style="width: 18rem;">
+            <img src="{{profileImg}}" class="card-img-top" alt="">
             <div class="card-body">
                 <h5 class="card-title">{{username}}</h5>
                 <p class="card-text">{{email}}</p>
                 <p class="card-text">{{role}}</p>
                 <p class="card-text">{{favorites}}</p>
-                <a href="/users/{{id}}" class="btn btn-primary">Ver Perfil</a>
+                <a href="/users/{{id}}" class="btn btn-dark">Ver Perfil</a>
                 <hr>
                 {{!-- {{#if roleCheck}} --}}
-                <a href="/users/{{id}}/edit" class="btn btn-primary">Editar</a>
-                <form action="/users/{{id}}/delete" method="POST">
-                    <button class="btn btn-primary">Eliminar</button>
-                </form>
+                <div id="editButton">
+                    <a href="/users/{{id}}/edit" class="btn btn-ligth">Editar</a>
+                    <form action="/users/{{id}}/delete" method="POST">
+                        <button class="btn btn-ligth">Eliminar</button>
+                    </form>
+                </div>
+
                 {{!-- {{/if}} --}}
             </div>
         </div>
