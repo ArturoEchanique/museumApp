@@ -2,18 +2,27 @@
     <h3 id="titU">Ususarios</h3>
     <div class="row">
         <div class="card col-6" style="width: 18rem;">
-            <img src="{{profileImg}}" class="card-img-top" alt="#">
+            <img src="{{user.profileImg}}" class="card-img-top" alt="#">
 
         </div>
         <div class="card-body col-6">
-            <h5 class="card-title">{{username}}</h5>
-            <p class="card-text">{{email}}</p>
-            <p class="card-text">{{role}}</p>
-            <p class="card-text">{{favorites}}</p>
-            <a href="/users/{{id}}" class="btn btn-primary">Ver Perfil</a>
+            <h5 class="card-title">{{user.username}}</h5>
+            <p class="card-text">{{user.email}}</p>
+            <p class="card-text">{{user.role}}</p>
+            <p class="card-text">{{user.favorites}}</p>
+            <a href="/users/{{user.id}}" class="btn btn-primary">Ver Perfil</a>
             <hr>
             {{!-- {{#if roleCheck}} --}}
-            <button href="#" class="btn btn-primary">Cambiar Role</button>
+            {{#if isUser }}
+            <form action="/users/{{user.id}}/setRole/MODERATOR" method="POST">
+                <button class="btn btn-primary">Hacer Moderador</button>
+            </form>
+            {{/if}}
+            {{#if isModerator}}
+            <form action="/users/{{user.id}}/setRole/USER" method="POST">
+                <button class="btn btn-primary">Hacer Usuario</button>
+            </form>
+            {{/if}}
 
             {{!-- {{/if}} --}}
         </div>

@@ -7,16 +7,23 @@ router.get('/users', (req, res, next) => {
     User
         .find()
         .then(user => {
-            console.log(user)
             res.render('user/users', { user, roleCheck })
         })
         .catch(error => next(error))
 })
 router.get('/users/:userID', (req, res, next) => {
     const { userID } = req.params
+    let isModerator
+    let isUser
+
     User
         .findById(userID)
-        .then(user => res.render('user/user-detail', user))
+        .then(user => {
+            isModerator = (user.role === "MODERATOR")
+            isUser = (user.role === "USER")
+
+            res.render('user/user-detail', { user, isModerator, isUser })
+        })
         .catch(error => next(error))
 
 })
@@ -49,6 +56,16 @@ router.post('/users/:userID/delete', (req, res, next) => {
         .findByIdAndRemove(userID)
         .then(() => res.redirect('/users'))
         .catch(error => next(error))
+})
+
+router.post('/users/:userID/setRole/:role', (req, res, next) => {
+    const { userID, role } = req.params
+
+    User
+        .findByIdAndUpdate(userID, { role: role })
+        .then(() => res.redirect('/users'))
+        .catch(error => next(error))
+
 })
 
 
