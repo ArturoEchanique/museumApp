@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const User = require('../models/User.model')
+const { isLoggedIn, checkRole } = require('../middelware/auth')
 
-router.get('/users', (req, res, next) => {
+router.get('/users', isLoggedIn, (req, res, next) => {
     const roleCheck = req.session.currentUser.role === 'ADMIN' || 'MODERATOR'
 
     User

@@ -13,7 +13,7 @@
 
 <body>
    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-transparent">
          <div class="container-fluid">
             <a class="navbar-brand" href="/">metApp_</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -29,13 +29,13 @@
                      <a class="nav-link" href="#">Galeria</a>
                   </li>
                   <li class="nav-item">
+                     <a class="nav-link" href="/users">Usuarios</a>
+                  </li>
+                  <li class="nav-item">
                      <a class="nav-link" href="/Login">Iniciar Sesion</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="/Register">Registrate</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="/users">Usuarios</a>
                   </li>
                   <form action="logOut" method="POST">
                      <button class="nav-link">Cerrar Sesion</button>
@@ -56,7 +56,7 @@
    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
 
-{{!-- para leer en voz alta texto--}}
+   {{!-- para leer en voz alta texto--}}
    <script src="./textToSpeech.js"></script>
 
    <script src="/js/script.js"></script>
