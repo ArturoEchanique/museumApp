@@ -11,7 +11,7 @@ const userSchema = new Schema(
     email: String,
     // comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     favorites: [{ type: Schema.Types.ObjectId, ref: 'Art' }],
-    username: {
+    role: {
       type: String,
       enum: ["ADMIN", "MODERATOR", "USER"],
       default: "USER"
