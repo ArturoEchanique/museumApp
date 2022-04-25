@@ -5,6 +5,9 @@ const { Schema, model } = require("mongoose");
 //documento de tipo arte al crear una coleccion, y si guardamos ya estos parametros no habra que acceder a la API
 // cada vez que se visualice un arte
 const artItemSchema = new Schema({
+    apiId: {
+        type: String,
+    },
     likes: {
         type: Number,
     },

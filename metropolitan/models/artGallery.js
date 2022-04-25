@@ -6,9 +6,6 @@ const { Schema, model } = require("mongoose");
 // cada vez que se visualice un arte
 const artGallerySchema = new Schema(
     {
-        apiId: {
-            type: String,
-        },
         name: {
             type: String,
         },

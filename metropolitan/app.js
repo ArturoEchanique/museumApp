@@ -36,6 +36,9 @@ app.use("/", user);
 
 const collections = require("./routes/collections.route");
 app.use("/", collections);
+//RUTAS SIMPLEMENTE PARA TESTEAR
+const test = require("./routes/test.routes");
+app.use("/test", test);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
