@@ -6,14 +6,7 @@ const ArtItem = require('../models/ArtItem.model')
 
 const artworkAPI = new APIHandler();
 
-<<<<<<< HEAD
-router.get('/collections', (req, res, next) => {
-
-    res.render('collection/create-collection')
-})
-=======
 router.get('/collections', (req, res, next) => res.render('collections/create-collection'))
->>>>>>> daeaf081377a882f36e384cd82f50a726d7e3955
 
 router.post('/collections', (req, res, next) => {
 
@@ -79,14 +72,6 @@ router.get('/art/:artID', (req, res, next) => {
 
 })
 
-<<<<<<< HEAD
-router.get('/art/:artID', (req, res, next) => {
-    const { artID } = req.params
-    artworkAPI.getOneArtwork(artID)
-        .then(({ data }) => {
-
-            res.render('collection/artwork', data)
-=======
 router.get('/createItem', (req, res, next) => {
     res.render('collections/create-art')
 })
@@ -111,7 +96,6 @@ router.get('/art', (req, res, next) => {
 
                 // return Promise.all(promisesArr)
             })
->>>>>>> daeaf081377a882f36e384cd82f50a726d7e3955
         })
 
     //.then(responses => responses.map(elm => elm.item))
