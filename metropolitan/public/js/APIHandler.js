@@ -1,30 +1,20 @@
+const axios = require('axios');
+
 class APIHandler {
   constructor() {
     this.axiosApp = axios.create({
-      baseURL: 'https://collectionapi.metmuseum.org/public/collection/v1'
+      baseURL: 'https://collectionapi.metmuseum.org'
     })
   }
 
-  getFullList() {
-    return this.axiosApp.get('/characters')
+  getOneCollection(searchParam) {
+    return this.axiosApp.get(`/public/collection/v1/search?isPublicDomain=true?hasImages=true&q=${searchParam}`)
   }
 
-  getOneRegister(characterId) {
-
-    return this.axiosApp.get(`/characters/${characterId}`)
+  getOneArtwork(objectID) {
+    return this.axiosApp.get(`/public/collection/v1/objects/${objectID}`)
   }
 
-  createOneRegister(characterInfo) {
-
-    return this.axiosApp.post(`/characters`, characterInfo);
-  }
-
-  updateOneRegister(characterId, characterInfo) {
-    return this.axiosApp.put(`/characters/${characterId}`, characterInfo);
-  }
-
-  deleteOneRegister(characterId) {
-    return this.axiosApp.delete(`/characters/${characterId}`);
-  }
 }
 
+module.exports = APIHandler
