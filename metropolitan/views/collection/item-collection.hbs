@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Item collection</h1>
+    <p>{{searchParam}}</p>
+    {{#each dataArray}}
+    <p>{{title}}</p>
+    <a href="/art/{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+    <p>{{primaryImageSmall}}</p>
+    <hr>
+    {{/each}}
+
+    <form action="/create-collection" method="POST" class="create-collection">
+        <input type="text" id="title" placeholder="Título" name="title">
+        <input type="text" id="description" placeholder="Descripción" name="description">
+        <input type="text" id="bgImage" placeholder="Imagen destacada" name="bgImage">
+        <input type="hidden" id="artItemsList" name="artItemsList" value={{artItemIds}}>
+        <input type="hidden" id="searchParam" name="params" value={{searchParam}}>
+        <button id="createhBtn" type="submit">Save</button>
+    </form>
+
+</div>

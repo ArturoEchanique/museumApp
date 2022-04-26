@@ -7,7 +7,7 @@ const artworkAPI = new APIHandler();
 
 router.get('/collections', (req, res, next) => {
 
-    res.render('collections/create-collection')
+    res.render('collection/create-collection')
 })
 
 router.post('/collections', (req, res, next) => {
@@ -25,21 +25,32 @@ router.post('/collections', (req, res, next) => {
         })
         .then(responses => responses.map(elm => elm.data))
         //.then(dataArray => console.log('ARRAY CON SOLO LOS DATOS DE LA PROMESA', dataArray))
-        .then(dataArray => res.render('collections/item-collection', { dataArray }))
+        .then(dataArray => {
+            let artItemIds = []
+            dataArray.forEach(element => {
+                artItemIds.push(element.objectID)
+                //console.log("el elemento es el siguiente ------", element)
+            });
+
+            console.log('los artItemIds son', artItemIds)
+
+            res.render('collection/item-collection', { dataArray, artItemIds, searchParam })
+        })
 
         .catch(err => console.log('NUESTRO ERROR', err))
 })
 
 router.post('/create-collection', (req, res, next) => {
 
-    const { title, description, dataArray } = req.body
+    const { title, description, artItemsList, params, bgImage } = req.body
 
+    res.send(artItemsList)
 
 
     Collection
-        .create({ title, description, rating, author })
-        .then(newBook => {
-            res.redirect(`/libros/detalles/${newBook._id}`)
+        .create({ title, description, artItemsList, params, bgImage })
+        .then(newCollection => {
+            res.redirect('/collections')
         })
         .catch(err => console.log(err))
 
@@ -48,12 +59,12 @@ router.post('/create-collection', (req, res, next) => {
 
 
 
-router.get('/art/art:id', (req, res, next) => {
-    const { id } = req.params
-    artworkAPI.getOneArtwork(id)
+router.get('/art/:artID', (req, res, next) => {
+    const { artID } = req.params
+    artworkAPI.getOneArtwork(artID)
         .then(({ data }) => {
 
-            res.render('collections/artwork', data)
+            res.render('collection/artwork', data)
         })
 
 })
