@@ -34,7 +34,7 @@ app.use("/", auth);
 const user = require("./routes/user.routes");
 app.use("/", user);
 
-const collections = require("./routes/collections.route");
+const collections = require("./routes/metropolitan.route");
 app.use("/", collections);
 //RUTAS SIMPLEMENTE PARA TESTEAR
 const test = require("./routes/test.routes");
