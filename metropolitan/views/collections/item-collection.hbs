@@ -2,7 +2,7 @@
 
 {{#each dataArray}}
 <p>{{title}}</p>
-<a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+<a href="/art/{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
 {{/each}}
 
 <form action="/create-collection" method="POST" class="create-collection">

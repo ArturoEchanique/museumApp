@@ -66,16 +66,14 @@ body {
     padding: 100px 200px;
     width: 100%;
     /* background-image: url("./images/presentationBg2.jpg");
-    background-size: cover;
+    background-size: cover;*/
 }
 
 footer {
-    margin-top: 800px;
-}
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover;
 }
 
 .presentationMain p {
