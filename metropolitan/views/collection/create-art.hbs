@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <form action="/createItem" method="post">
+            <h3>Crear Item</h3>
+            <hr>
+            <div class="col-md-12">
+                <label for="apiId" class="form-label">Item ID</label>
+                <input type="text" class="form-control" id="apiId" name="apiId" required>
+            </div>
+            <div class="col-md-12">
+                <label for="likes" class="form-label">likes</label>
+                <input type="text" class="form-control" id="likes" name="likes" required>
+            </div>
+            {{!-- <div class="col-md-12">
+                <label for="artGallery" class="form-label">artGallery</label>
+                <input type="text" class="form-control" id="artGallery" name="artGallery" required>
+            </div> --}}
+            <div class="col-12">
+                <button class="btn btn-dark" type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+{{!-- <div class="container">
+    <h1>Item Artwork</h1>
+    <p>{{title}}</p>
+    <p>{{artistDisplayName}}</p>
+    <img src="{{primaryImageSmall}}" alt="{{title}}">
+</div> --}}
+
+
+<div class="card bg-dark text-white">
+    <img src="{{apiData.primaryImageSmall}}" class="card-img" alt="{{apiData.title}}">
+    <div class="card-img-overlay">
+        <h3 class="card-title">{{apiData.title}}</h3>
+        <h5 class="card-title">{{apiData.artistDisplayName}}</h5>
+        <p>{{apiData.objectName}}</p>
+        <p>{{apiData.culture}}</p>
+        <p>{{dbData.likes}}</p>
+    </div>
+</div>

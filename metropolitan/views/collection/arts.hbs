@@ -1,0 +1,13 @@
+{{#each item}}
+
+<div class="card bg-dark text-white">
+    <img src="{{primaryImageSmall}}" class="card-img" alt="{{title}}">
+    <div class="card-img-overlay">
+        <h3 class="card-title">{{title}}</h3>
+        <h5 class="card-title">{{artistDisplayName}}</h5>
+        <p>{{objectName}}</p>
+        <p>{{culture}}</p>
+        <p>Likes:{{likes}}</p>
+    </div>
+</div>
+{{/each}}

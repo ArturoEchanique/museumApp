@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    color: black;
 }
 
 #sing-up {
@@ -14,11 +15,6 @@
     margin: 40px;
     margin-left: 400px;
     margin-right: 400px;
-}
-
-#navbar {
-    border-bottom: solid;
-    height: 100px;
 }
 
 .navbar form button {
@@ -57,7 +53,9 @@ body {
     /* background-color: black; */
 }
 
+
 /* NO TOCAR ABAJO*/
+
 .presentationArt {
     height: 80vh;
 }
@@ -68,15 +66,19 @@ body {
     padding: 100px 200px;
     width: 100%;
     /* background-image: url("./images/presentationBg2.jpg");
-    background-size: cover;
+    background-size: cover;*/
+}
+
+footer {
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover;
 }
 
 .presentationMain p {
     font-size: 1.35em;
 }
+
 
 /* NO TOCAR ARRIBA*/
