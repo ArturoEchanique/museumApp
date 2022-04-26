@@ -48,7 +48,7 @@ router.post('/create-collection', (req, res, next) => {
 
 
 
-router.get('/art/art:id', (req, res, next) => {
+router.get('/art/:artId', (req, res, next) => {
     const { id } = req.params
     artworkAPI.getOneArtwork(id)
         .then(({ data }) => {
