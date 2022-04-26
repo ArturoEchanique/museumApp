@@ -4,6 +4,8 @@ let speech = new SpeechSynthesisUtterance();
 // Set Speech Language
 speech.lang = "en";
 
+// window.speechSynthesis.speak("hello my name is dog");
+
 let voices = []; // global array of available voices
 
 window.speechSynthesis.onvoiceschanged = () => {
@@ -18,6 +20,14 @@ window.speechSynthesis.onvoiceschanged = () => {
     voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
 };
 
+/// TESTING 
+speech.text = document.querySelector("#presentationText").innerHTML
+
+// Start Speaking
+window.speechSynthesis.speak(speech);
+
+/// TESTING
+
 document.querySelector("#rate").addEventListener("input", () => {
     // Get rate Value from the input
     const rate = document.querySelector("#rate").value;
@@ -29,6 +39,7 @@ document.querySelector("#rate").addEventListener("input", () => {
     document.querySelector("#rate-label").innerHTML = rate;
 });
 
+
 document.querySelector("#volume").addEventListener("input", () => {
     // Get volume Value from the input
     const volume = document.querySelector("#volume").value;
@@ -39,7 +50,6 @@ document.querySelector("#volume").addEventListener("input", () => {
     // Update the volume label
     document.querySelector("#volume-label").innerHTML = volume;
 });
-
 document.querySelector("#pitch").addEventListener("input", () => {
     // Get pitch Value from the input
     const pitch = document.querySelector("#pitch").value;
@@ -50,6 +60,8 @@ document.querySelector("#pitch").addEventListener("input", () => {
     // Update the pitch label
     document.querySelector("#pitch-label").innerHTML = pitch;
 });
+
+
 
 document.querySelector("#voices").addEventListener("change", () => {
     // On Voice change, use the value of the select menu (which is the index of the voice in the global voice array)
@@ -63,6 +75,8 @@ document.querySelector("#start").addEventListener("click", () => {
     // Start Speaking
     window.speechSynthesis.speak(speech);
 });
+
+
 
 document.querySelector("#pause").addEventListener("click", () => {
     // Pause the speechSynthesis instance
