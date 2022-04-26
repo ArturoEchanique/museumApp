@@ -1,0 +1,14 @@
+<div class="container">
+
+<h1>Collection</h1>
+
+
+<p>Title: {{collection.title}}</p>
+<p>Background image: </p>
+<img src="{{collection.bgImage}}" alt="">
+<br>
+<br>
+{{#each artItems}}
+<a href="/art/{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+{{/each}}
+</div>
