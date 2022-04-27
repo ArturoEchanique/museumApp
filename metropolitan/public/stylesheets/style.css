@@ -17,6 +17,10 @@
     margin-right: 400px;
 }
 
+#nav {
+    margin-bottom: 30px;
+}
+
 .navbar form button {
     background: transparent;
     border: none;
@@ -70,6 +74,7 @@ body {
 }
 
 footer {
+    margin-top: 200px;
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -80,5 +85,9 @@ footer {
     font-size: 1.35em;
 }
 
+.controlPanel .btn {
+    padding: 100px;
+    margin: 30px;
+}
 
 /* NO TOCAR ARRIBA*/
