@@ -3,6 +3,7 @@ let map
 function initMap() {
     renderMap()
     getPlaces()
+    marker.addListener("click", toggleBounce);
 }
 
 function renderMap() {
@@ -25,9 +26,18 @@ function getPlaces() {
         .catch(err => consoel.log(err))
 }
 
-function placeMarkers(places) {
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}
 
+function placeMarkers(places) {
+    let marker
     const { Marker } = google.maps
+
 
     places.forEach(place => {
 
@@ -35,7 +45,9 @@ function placeMarkers(places) {
             lat: place.lat,
             lng: place.long,
         }
-        console.log(position)
-        new Marker({ position, title: place.name, map })
+        const animation = google.maps.Animation.DROP
+
+        new Marker({ position, title: place.name, description: place.description, animation, map })
     })
 }
+window.initMap = initMap;

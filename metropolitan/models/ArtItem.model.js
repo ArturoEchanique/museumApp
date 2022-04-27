@@ -11,7 +11,7 @@ const artItemSchema = new Schema({
     likes: {
         type: Number,
     },
-    artGallery: { type: Schema.Types.ObjectId, ref: 'artGallery' }
+    artGallery: { type: Schema.Types.ObjectId, ref: 'ArtGallery' }
 }, {
     timestamps: true,
 });
