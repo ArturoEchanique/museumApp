@@ -1,5 +1,9 @@
 <div class="container">
     <h1>Item Artwork</h1>
     <p>N likes: {{artItem.likes}}</p>
-    <img src="{{apiData.primaryImage}}" alt="">
+    <img src="{{apiData.primaryImageSmall}}" alt="">
+    <form action="/art/{{artItem.id}}/favorite" method="POST">
+        <button class="btn btn-outline-dark" type="submit">Favorite</button>
+        <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
+    </form>
 </div>

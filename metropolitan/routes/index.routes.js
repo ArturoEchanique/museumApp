@@ -1,16 +1,12 @@
 // esto hay que meterlo en otra ruta no en index
 const WikipediaHandler = require('../apiHandlers/WikiApiHandler')
 const wikipediaAPI = new WikipediaHandler();
-
 const router = require("express").Router();
 
 router.get("/", (req, res, next) => {
-  res.render("index");
-});
-
-
+  res.render("index")
+})
 router.get('/presentation', (req, res, next) => {
-
 
   wikipediaAPI
     .getOneArtist(["mona", "lisa"])
@@ -22,7 +18,6 @@ router.get('/presentation', (req, res, next) => {
       textPresentation = textPresentation.replace(/ *\([^)]*\) */g, "")
       res.render('presentation', { textPresentation })
     })
-
 })
 
 module.exports = router;
