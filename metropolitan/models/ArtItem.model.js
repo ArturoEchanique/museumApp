@@ -13,6 +13,10 @@ const artItemSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ArtGallery'
     },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
 }, {
     timestamps: true,
 });

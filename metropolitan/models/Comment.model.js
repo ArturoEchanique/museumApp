@@ -6,9 +6,6 @@ const commentSchema = new Schema(
             type: String,
         },
         owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-        rating: {
-            type: Number,
-        },
         state: {
             type: String,
             enum: ["APPROVED", "PENDANT", "REJECTED"],

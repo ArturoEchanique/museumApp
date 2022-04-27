@@ -48,7 +48,7 @@ router.post('/create-collection', (req, res, next) => {
             artApiIds.forEach(artApiId => {
                 ArtItem.findOne({ 'apiId': artApiId })
                     .then(item => {
-                        return item === null ? ArtItem.create({ apiId: artApiId, likes: 0, artGallery: null }) : item
+                        return item === null ? ArtItem.create({ apiId: artApiId, likes: 0, artGallery: null, comments:[] }) : item
                     })
                     .then(newArtItem => {
                         return Collection.findByIdAndUpdate(collection.id, { $push: { artItemsList: newArtItem.id } })

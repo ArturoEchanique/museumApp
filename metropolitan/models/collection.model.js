@@ -17,7 +17,11 @@ const collectionSchema = new Schema(
             type: ['String'],
             required: true,
         },
-        artItemsList: [{ type: Schema.Types.ObjectId, ref: 'ArtItem' }],
+        artItemsList: [{
+            type: Schema.Types.ObjectId,
+            ref: 'ArtItem',
+            default: [],
+        }],
     },
     {
         timestamps: true
