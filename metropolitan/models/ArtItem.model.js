@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-
 const artItemSchema = new Schema({
     apiId: {
         type: String,
