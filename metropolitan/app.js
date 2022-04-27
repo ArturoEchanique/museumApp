@@ -9,7 +9,6 @@ require("./config")(app);
 require('./config/session.config')(app)
 
 const projectName = "metApp_";
-
 app.locals.appTitle = `Museum`;
 
 require('./routes')(app)

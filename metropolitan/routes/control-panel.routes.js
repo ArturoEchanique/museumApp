@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const User = require('../models/User.model')
-const Collection = require('../models/collection.model')
+const Collection = require('../models/Collection.model')
 const ArtItem = require('../models/ArtItem.model')
 const MetApiHandler = require('../apiHandlers/MetApiHandler')
 const metAPI = new MetApiHandler();
