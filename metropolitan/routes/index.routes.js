@@ -2,6 +2,9 @@
 const WikipediaHandler = require('../apiHandlers/WikiApiHandler')
 const wikipediaAPI = new WikipediaHandler();
 
+const DeezerApiHandler = require('../apiHandlers/DeezerApiHandler')
+const deezerAPI = new DeezerApiHandler();
+
 const router = require("express").Router();
 
 router.get("/", (req, res, next) => {
@@ -22,7 +25,9 @@ router.get('/presentation', (req, res, next) => {
       textPresentation = textPresentation.replace(/ *\([^)]*\) */g, "")
       res.render('presentation', { textPresentation })
     })
-
 })
+
+
+
 
 module.exports = router;
