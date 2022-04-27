@@ -1,17 +1,16 @@
 const router = require("express").Router();
 const User = require('../models/User.model')
-
 const bcrypt = require('bcryptjs')
 const saltRounds = 10
 
-router.get('/Register', (req, res, next) => res.render('auth/sing-up'))
+router.get('/register', (req, res, next) => {
+    res.render('auth/sing-up')
+})
 
-router.post('/Register', (req, res, next) => {
-
+router.post('/register', (req, res, next) => {
     let newUser = { username, password, email, profileImg } = req.body
 
     if (profileImg == "") profileImg = "https://painting-planet.com/images2/autorretrato-en-sombrero-de-fieltro-vincent-van_1.jpg"
-
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
@@ -20,10 +19,12 @@ router.post('/Register', (req, res, next) => {
         .catch(error => next(error))
 })
 
-router.get('/Login', (req, res, next) => res.render('auth/login'))
-router.post('/Login', (req, res, next) => {
+router.get('/login', (req, res, next) => {
+    res.render('auth/login')
+})
 
-    const { username, email, password } = req.body
+router.post('/login', (req, res, next) => {
+    const { email, password } = req.body
 
     User
         .findOne({ email })
@@ -42,10 +43,8 @@ router.post('/Login', (req, res, next) => {
         .catch(error => next(error))
 })
 
-router.post('/LogOUT', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/login'))
 })
-
-
 
 module.exports = router;

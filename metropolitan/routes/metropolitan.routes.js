@@ -1,14 +1,12 @@
 const router = require("express").Router();
+
+const Collection = require('../models/Collection.model');
+const ArtItem = require('../models/ArtItem.model')
 const User = require('../models/User.model')
-const APIHandler = require('../apiHandlers/MetApiHandler')
-const Collection = require('../models/collection.model');
-const { collection } = require("../models/User.model");
 
 const MetApiHandler = require('../apiHandlers/MetApiHandler')
 const metAPI = new MetApiHandler();
-
-const ArtItem = require('../models/ArtItem.model')
-
+const APIHandler = require('../apiHandlers/MetApiHandler')
 const artworkAPI = new APIHandler();
 
 router.get('/collections', (req, res, next) => {
@@ -23,10 +21,9 @@ router.get('/collections', (req, res, next) => {
 })
 
 router.get('/collections/:collectionId', (req, res, next) => {
-
     const collectionData = {}
-
     const { collectionId } = req.params
+
     Collection
         .findById(collectionId)
         .populate("artItemsList")
@@ -42,18 +39,12 @@ router.get('/collections/:collectionId', (req, res, next) => {
             res.render('collections/collection', collectionData)
         })
         .catch(err => console.log(err))
-
-
-
-
 })
 
-//uso artApiId porque al abrir la coleccion se vuelve a llamar a la Api, y no se envia el documento
-//artItem a la vista. Ahora con el apiId si obtengo el id del artItem de mongoose
 router.get('/art/:artApiId', (req, res, next) => {
     const { artApiId } = req.params
-
     const artItemData = {}
+
     ArtItem
         .findOne({ 'apiId': artApiId })
         .then(artItem => {
@@ -66,7 +57,18 @@ router.get('/art/:artApiId', (req, res, next) => {
             res.render('collections/artwork', artItemData)
         })
         .catch(err => console.log(err))
+})
 
+router.post('/art/:artId/favorite', (req, res, next) => {
+    const { artId } = req.params
+    const { artApiId } = req.body
+
+    ArtItem
+        .findByIdAndUpdate(artId, { $inc: { likes: 1 } })
+        .then(artItem => {
+            res.redirect(`/art/${artApiId}`)
+        })
+        .catch(err => console.log(err))
 })
 
 module.exports = router

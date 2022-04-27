@@ -12,6 +12,7 @@
             <p class="card-text">{{user.favorites}}</p>
             <hr>
             {{!-- {{#if roleCheck}} --}}
+            
             {{#if isUser }}
             <form action="/users/{{user.id}}/setRole/MODERATOR" method="POST">
                 <button class="btn btn-primary">Hacer Moderador</button>
@@ -22,9 +23,11 @@
                 <button class="btn btn-primary">Hacer Usuario</button>
             </form>
             {{/if}}
+            
 
             {{!-- {{/if}} --}}
         </div>
+        <h3>favorite Arts</h3>
 
     </div>
 

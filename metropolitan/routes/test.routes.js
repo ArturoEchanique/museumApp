@@ -3,7 +3,6 @@ const router = require("express").Router();
 router.get('/', (req, res, next) => {
     const roleCheck = req.session.currentUser.role === 'ADMIN' || 'MODERATOR'
 
-
     res.render("testView")
     // User
     //     .find()

@@ -26,7 +26,6 @@ router.get('/users/:userID', (req, res, next) => {
             res.render('user/user-detail', { user, isModerator, isUser })
         })
         .catch(error => next(error))
-
 })
 
 router.get('/users/:userID/edit', (req, res, next) => {
@@ -36,7 +35,6 @@ router.get('/users/:userID/edit', (req, res, next) => {
         .findById(userID)
         .then(user => res.render('user/user-edit', user))
         .catch(error => next(error))
-
 })
 
 
@@ -66,7 +64,6 @@ router.post('/users/:userID/setRole/:role', (req, res, next) => {
         .findByIdAndUpdate(userID, { role: role })
         .then(() => res.redirect('/users'))
         .catch(error => next(error))
-
 })
 
 
