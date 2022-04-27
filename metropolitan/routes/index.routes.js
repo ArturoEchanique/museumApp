@@ -3,6 +3,9 @@ const WikipediaHandler = require('../apiHandlers/WikiApiHandler')
 const wikipediaAPI = new WikipediaHandler();
 const router = require("express").Router();
 
+const DeezerApiHandler = require('../apiHandlers/DeezerApiHandler')
+const deezerAPI = new DeezerApiHandler();
+
 router.get("/", (req, res, next) => {
   res.render("index")
 })
@@ -16,8 +19,24 @@ router.get('/presentation', (req, res, next) => {
       console.log('esta es la imagen====== ', src)
       textPresentation = data.query.pages[keyID].extract
       textPresentation = textPresentation.replace(/ *\([^)]*\) */g, "")
+
+      DeezerApiHandler
+        .getOneArtist('mozart')
+        .then(({ data }) => {
+
+          console.log(data)
+
+        })
+
+
+
+
+
       res.render('presentation', { textPresentation })
     })
-})
 
-module.exports = router;
+
+
+
+
+  module.exports = router
