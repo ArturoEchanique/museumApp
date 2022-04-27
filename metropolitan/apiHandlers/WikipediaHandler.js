@@ -13,11 +13,19 @@ class WikipediaHandler {
         for (let i = 1; i < searchParams.length; i++) {
             paramsString += "%20"
             paramsString += searchParams[i]
-            paramsString = "Salvador%20Dali"
-            
+            //paramsString = "Salvador%20Dali"
+
         }
         return this.axiosApp.get(`/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${paramsString}`)
     }
+
+    getImageArtis(searchParams) {
+
+        return this.axiosApp.get(`/w/api.php?action=query&titles=Image:${searchParams}.jpg&prop=imageinfo&iiprop=url`)
+    }
+
 }
 
 module.exports = WikipediaHandler
+
+
