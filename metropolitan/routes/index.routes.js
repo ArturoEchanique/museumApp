@@ -1,5 +1,5 @@
 // esto hay que meterlo en otra ruta no en index
-const WikipediaHandler = require('../apiHandlers/WikiApiHandler')
+const WikipediaHandler = require('../services/WikiApiHandler')
 const wikipediaAPI = new WikipediaHandler();
 const router = require("express").Router();
 

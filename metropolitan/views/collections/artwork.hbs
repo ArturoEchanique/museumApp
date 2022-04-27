@@ -6,4 +6,7 @@
         <button class="btn btn-outline-dark" type="submit">Favorite</button>
         <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
     </form>
+    {{#if inCollection}}
+    <a class="nav-link" id="presentation" href="/collections/">Back to collection</a>
+    {{/if}}
 </div>

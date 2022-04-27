@@ -4,9 +4,9 @@ const Collection = require('../models/Collection.model');
 const ArtItem = require('../models/ArtItem.model')
 const User = require('../models/User.model')
 
-const MetApiHandler = require('../apiHandlers/MetApiHandler')
+const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
-const APIHandler = require('../apiHandlers/MetApiHandler')
+const APIHandler = require('../services/MetApiHandler')
 const artworkAPI = new APIHandler();
 
 router.get('/collections', (req, res, next) => {
@@ -41,9 +41,11 @@ router.get('/collections/:collectionId', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.get('/art/:artApiId', (req, res, next) => {
-    const { artApiId } = req.params
+router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
+    const { artApiId, collectionId } = req.params
     const artItemData = {}
+    artItemData.collectionId = collectionId
+    artItemData.inCollection = true
 
     ArtItem
         .findOne({ 'apiId': artApiId })
@@ -58,6 +60,26 @@ router.get('/art/:artApiId', (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
+
+router.get('/art/:artApiId', (req, res, next) => {
+    const { artApiId, collectionId } = req.params
+    const artItemData = {}
+    artItemData.inCollection = false
+
+    ArtItem
+        .findOne({ 'apiId': artApiId })
+        .then(artItem => {
+            artItemData.artItem = artItem
+            return artworkAPI.getOneArtwork(artApiId)
+        })
+        .then(({ data }) => {
+            artItemData.apiData = data
+            console.log(artItemData)
+            res.render('collections/artwork', artItemData)
+        })
+        .catch(err => console.log(err))
+})
+
 
 router.post('/art/:artId/favorite', (req, res, next) => {
     const { artId } = req.params
