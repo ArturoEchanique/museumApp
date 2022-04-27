@@ -4,6 +4,7 @@ const Collection = require('../models/Collection.model');
 const ArtItem = require('../models/ArtItem.model')
 const Comment = require('../models/Comment.model')
 const User = require('../models/User.model')
+const Artist = require('../models/Artist.model')
 
 const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
@@ -15,17 +16,30 @@ const wikipediaAPI = new WikipediaHandler();
 const { isLoggedIn, checkRole } = require('../middelware/auth')
 
 router.get('/discover', (req, res, next) => {
+    let nameArr = []
+    const artistData = {}
 
-    wikipediaAPI
-        .getOneArtist(["salvador", "dali"])
+    //necesitamos una forma de obtener uno de forma aleatoria
+    Artist.findOne()
+        .then(artist => {
+            artistData.name = artist.name
+            nameArr = artist.searchParams.split("-")
+            return wikipediaAPI
+                .getOneArtist(nameArr)
+        })
         .then(({ data }) => {
             const keyID = Object.keys(data.query.pages)
-            const src = data.query.pages[keyID].pageimages
-            console.log('esta es la imagen====== ', src)
-            textPresentation = data.query.pages[keyID].extract
+            let textPresentation = data.query.pages[keyID].extract
             textPresentation = textPresentation.replace(/ *\([^)]*\) */g, "")
-            res.render('discover', { textPresentation })
+            artistData.text = textPresentation
+            return wikipediaAPI.getArtistImage(nameArr)
         })
+        .then(({ data }) => {
+            // artistData.image = data.query.pages.thumbnail.source
+            console.log("la data es...:", data)
+            res.render('discover', artistData)
+        })
+    
 })
 
 router.get('/collections', (req, res, next) => {

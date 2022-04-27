@@ -5,6 +5,10 @@ const artistSchema = new Schema({
         type: String,
         required: [true, 'Indicate an name']
     },
+    searchParams: {
+        type: String,
+        required: [true, 'Indicate the searchParams']
+    },
 }, {
     timestamps: true,
 });

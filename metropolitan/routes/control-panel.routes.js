@@ -23,9 +23,9 @@ router.get('/create-artist', (req, res, next) => {
 
 router.post('/create-artist', (req, res, next) => {
 
-    const { name } = req.body
+    const { name, searchParams } = req.body
     Artist
-        .create({ name })
+        .create({ name, searchParams })
         .then(artist => {
             res.redirect('/control-panel')
         })
