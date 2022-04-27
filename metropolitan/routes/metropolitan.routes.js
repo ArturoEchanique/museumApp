@@ -9,8 +9,24 @@ const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
 const APIHandler = require('../services/MetApiHandler')
 const artworkAPI = new APIHandler();
+const WikipediaHandler = require('../services/WikiApiHandler')
+const wikipediaAPI = new WikipediaHandler();
 
 const { isLoggedIn, checkRole } = require('../middelware/auth')
+
+router.get('/discover', (req, res, next) => {
+
+    wikipediaAPI
+        .getOneArtist(["salvador", "dali"])
+        .then(({ data }) => {
+            const keyID = Object.keys(data.query.pages)
+            const src = data.query.pages[keyID].pageimages
+            console.log('esta es la imagen====== ', src)
+            textPresentation = data.query.pages[keyID].extract
+            textPresentation = textPresentation.replace(/ *\([^)]*\) */g, "")
+            res.render('discover', { textPresentation })
+        })
+})
 
 router.get('/collections', (req, res, next) => {
 

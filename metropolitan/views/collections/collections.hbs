@@ -1,9 +1,24 @@
-<div class="container">
-<h1>SHOWING COLLECTIONS</h1>
 
-{{#each collections}}
-<p>{{title}}</p>
-<p>{{description}}</p>
-<a href="/collections/{{id}}"><img src="{{bgImage}}" alt=""></a>
-{{/each}}
-</div>
+    <h1>SHOWING COLLECTIONS</h1>
+
+    {{#each collections}}
+    {{!-- <p>{{title}}</p>
+    <p>{{description}}</p>
+    <a href="/collections/{{id}}"><img src="{{bgImage}}" alt=""></a> --}}
+        <section class="boot-elemant-bg py-md-5 py-4"
+            style="background-image: url({{bgImage}});">
+            <div class="container position-relative py-md-5 py-0">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <span class="text-white text-uppercase">Travel </span>
+                        <h2 class="text-white display-3 font-weight-bold">{{title}}</h2>
+                        <p class="f-w-16 mb-4">{{description}}</p>
+                        <a href="/collections/{{id}}" class="btn btn-outline-white btn-lg px-4"> Ver colección </a>
+                    </div>
+                </div>
+            </div>
+            <div class="elemant-bg-overlay black"></div>
+        </section>
+    {{/each}}
+
+

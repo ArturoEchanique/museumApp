@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const User = require('../models/User.model')
 const Collection = require('../models/Collection.model')
+const Artist = require('../models/Artist.model')
 const ArtItem = require('../models/ArtItem.model')
 const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
@@ -13,6 +14,23 @@ let artApiIds = []
 router.get('/control-panel', (req, res, next) => {
 
     res.render("control-panel/control-panel")
+})
+
+router.get('/create-artist', (req, res, next) => {
+
+    res.render('control-panel/create-artist')
+})
+
+router.post('/create-artist', (req, res, next) => {
+
+    const { name } = req.body
+    Artist
+        .create({ name })
+        .then(artist => {
+            res.redirect('/control-panel')
+        })
+        .catch(error => next(error))
+
 })
 
 router.get('/create-collection', (req, res, next) => {
@@ -48,7 +66,7 @@ router.post('/create-collection', (req, res, next) => {
             artApiIds.forEach(artApiId => {
                 ArtItem.findOne({ 'apiId': artApiId })
                     .then(item => {
-                        return item === null ? ArtItem.create({ apiId: artApiId, likes: 0, artGallery: null, comments:[] }) : item
+                        return item === null ? ArtItem.create({ apiId: artApiId, likes: 0, artGallery: null, comments: [] }) : item
                     })
                     .then(newArtItem => {
                         return Collection.findByIdAndUpdate(collection.id, { $push: { artItemsList: newArtItem.id } })
@@ -63,30 +81,5 @@ router.post('/create-collection', (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
-// artApiIds.forEach(artApiId => {
-//     ArtItem.findOne({ 'apiId': artApiId })
-//         .then(item => {
-//             return item === null ? ArtItem.create({ apiId: artApiId, likes: 0, artGallery: null }) : item
-//         })
-//         .then(newArtItem => {
-
-//             artItemsList.push(newArtItem.id)
-//         })
-//         .catch(err => console.log(err))
-// })
-// Collection
-//     .create({ title, description, bgImage, searchParams, artItemsList })
-//     .then(() => {
-//         res.redirect(`/collections`)
-//     })
-//     .catch(err => console.log(err))
-
-//Magicamente si no harcodeo esto no entran los object id, puede ser porque el array se este 
-//pusheando por referencia o algo asi? Ademas pese a sobreescribirlo, al hacer console log
-//salen los elementos añadidos anteriormente junto con estos nuevos
 
 module.exports = router
-
-
-//req.app.locals.myUser = user
-//findbyidandpudate {$push: {likes: LIKES++}

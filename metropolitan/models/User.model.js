@@ -1,10 +1,22 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
-    username: String,
-    password: String,
-    email: String,
-    favoriteItems: [{ type: Schema.Types.ObjectId, ref: 'ArtItem' }],
+
+    username: {
+        type: String,
+    },
+    password: {
+        type: String,
+        required: [true, 'Indicate a password']
+    },
+    email: {
+        type: String,
+        required: [true, 'Indicate an email']
+    },
+    favoriteItems: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'ArtItem' 
+    }],
     role: {
         type: String,
         enum: ["ADMIN", "MODERATOR", "USER"],
