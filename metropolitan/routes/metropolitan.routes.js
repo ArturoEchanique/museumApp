@@ -2,12 +2,15 @@ const router = require("express").Router();
 
 const Collection = require('../models/Collection.model');
 const ArtItem = require('../models/ArtItem.model')
+const Comment = require('../models/Comment.model')
 const User = require('../models/User.model')
 
 const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
 const APIHandler = require('../services/MetApiHandler')
 const artworkAPI = new APIHandler();
+
+const { isLoggedIn, checkRole } = require('../middelware/auth')
 
 router.get('/collections', (req, res, next) => {
 
@@ -44,53 +47,102 @@ router.get('/collections/:collectionId', (req, res, next) => {
 router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     const { artApiId, collectionId } = req.params
     const artItemData = {}
+    const userId = req.session.currentUser._id
     artItemData.collectionId = collectionId
     artItemData.inCollection = true
 
     ArtItem
         .findOne({ 'apiId': artApiId })
+        .populate("comments")
         .then(artItem => {
             artItemData.artItem = artItem
+            return User.findById(userId)
+        })
+        .then(user => {
+            if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
+            else artItemData.alreadyLiked = false
             return artworkAPI.getOneArtwork(artApiId)
         })
         .then(({ data }) => {
             artItemData.apiData = data
-            console.log(artItemData)
             res.render('collections/artwork', artItemData)
         })
         .catch(err => console.log(err))
 })
 
-router.get('/art/:artApiId', (req, res, next) => {
-    const { artApiId, collectionId } = req.params
-    const artItemData = {}
-    artItemData.inCollection = false
+// router.get('/art/:artApiId', (req, res, next) => {
+//     const { artApiId, collectionId } = req.params
+//     const artItemData = {}
+//     const userId = req.session.currentUser._id
+//     artItemData.inCollection = false
 
-    ArtItem
-        .findOne({ 'apiId': artApiId })
-        .then(artItem => {
-            artItemData.artItem = artItem
-            return artworkAPI.getOneArtwork(artApiId)
-        })
-        .then(({ data }) => {
-            artItemData.apiData = data
-            console.log(artItemData)
-            res.render('collections/artwork', artItemData)
-        })
-        .catch(err => console.log(err))
-})
+//     ArtItem
+//         .findOne({ 'apiId': artApiId })
+//         .then(artItem => {
+//             artItemData.artItem = artItem
+//             return User.findById(userId)
+//         })
+//         .then(user => {
+//             if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
+//             else artItemData.alreadyLiked = false
+//             return artworkAPI.getOneArtwork(artApiId)
+//         })
+//         .then(({ data }) => {
+//             artItemData.apiData = data
+//             res.render('collections/artwork', artItemData)
+//         })
+//         .catch(err => console.log(err))
+// })
 
-
-router.post('/art/:artId/favorite', (req, res, next) => {
+router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
     const { artId } = req.params
     const { artApiId } = req.body
+    const userId = req.session.currentUser._id
 
-    ArtItem
-        .findByIdAndUpdate(artId, { $inc: { likes: 1 } })
-        .then(artItem => {
-            res.redirect(`/art/${artApiId}`)
+    User.findById(userId)
+        .then(user => {
+            if (!user.favoriteItems.includes(artId)) {
+                ArtItem
+                    .findByIdAndUpdate(artId, { $inc: { likes: 1 } })
+                    // .then(art => console.log("el art item es", art))
+                    .then(artItem => {
+                        return User.findByIdAndUpdate(userId, { $push: { favoriteItems: artId } })
+                    })
+                    .then(user => {
+                        res.redirect(`/art/${artApiId}`)
+                    })
+                    .catch(err => console.log(err))
+            }
+            else {
+                ArtItem
+                    .findByIdAndUpdate(artId, { $inc: { likes: -1 } })
+                    // .then(art => console.log("el art item es", art))
+                    .then(artItem => {
+                        return User.findByIdAndUpdate(userId, { $pull: { favoriteItems: artId } })
+                    })
+                    .then(user => {
+                        console.log("el usuario actualizado es: ", user)
+                        res.redirect(`/art/${artApiId}`)
+                    })
+                    .catch(err => console.log(err))
+            }
         })
-        .catch(err => console.log(err))
+})
+
+router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
+
+    const { artId } = req.params
+    const { comment, collectionId, artApiId } = req.body
+    const user = req.session.currentUser
+    console.log("commenting ", req.body.comment)
+    Comment
+        .create({ text: comment, owner: user, state: "PENDANT" })
+        .then(comment => {
+            return ArtItem.findByIdAndUpdate(artId, { $push: { comments: comment.id } })
+        })
+        .then((artItem) => {
+            res.redirect(`/collections/${collectionId}/art/${artApiId}`)
+        })
 })
 
 module.exports = router

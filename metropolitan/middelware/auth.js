@@ -10,4 +10,5 @@ const checkRole = (...rolesToCheck) => (req, res, next) => {
     }
 }
 
+
 module.exports = { isLoggedIn, checkRole }

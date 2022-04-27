@@ -4,7 +4,7 @@ const userSchema = new Schema({
     username: String,
     password: String,
     email: String,
-    favoriteItems: [{ type: Schema.Types.ObjectId, ref: 'Art' }],
+    favoriteItems: [{ type: Schema.Types.ObjectId, ref: 'ArtItem' }],
     role: {
         type: String,
         enum: ["ADMIN", "MODERATOR", "USER"],

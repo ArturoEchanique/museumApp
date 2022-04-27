@@ -2,11 +2,29 @@
     <h1>Item Artwork</h1>
     <p>N likes: {{artItem.likes}}</p>
     <img src="{{apiData.primaryImageSmall}}" alt="">
+
+
     <form action="/art/{{artItem.id}}/favorite" method="POST">
-        <button class="btn btn-outline-dark" type="submit">Favorite</button>
+        {{#if alreadyLiked}}
+        <button class="btn btn-outline-dark" type="submit">Favorite ALREADY</button>
+        {{else}}
+        <button class="btn btn-outline-red" type="submit">Favorite not</button>
+        {{/if}}
         <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
     </form>
     {{#if inCollection}}
     <a class="nav-link" id="presentation" href="/collections/">Back to collection</a>
     {{/if}}
+    <h2>COMENTARIOS</h2>
+    <form action="/art/{{artItem.id}}/comment" method="POST">
+        <textarea id="w3review" name="comment" rows="4" cols="50" placeholder="escribe tu comentario">
+        </textarea>
+        <button id="createhBtn" type="submit">Send comment</button>
+        <input type="hidden" id="collectionId" name="collectionId" value={{collectionId}}>
+        <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
+        artItemData.collectionId
+    </form>
+    {{#each artItem.comments}}
+    <p>{{text}}</p>
+    {{/each}}
 </div>
