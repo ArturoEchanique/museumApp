@@ -17,6 +17,10 @@
     margin-right: 400px;
 }
 
+#nav {
+    margin-bottom: 30px;
+}
+
 .navbar form button {
     background: transparent;
     border: none;
@@ -70,6 +74,7 @@ body {
 }
 
 footer {
+    margin-top: 200px;
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
