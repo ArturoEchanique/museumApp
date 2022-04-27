@@ -34,11 +34,13 @@ app.use("/", auth);
 const user = require("./routes/user.routes");
 app.use("/", user);
 
-const collections = require("./routes/metropolitan.route");
+const collections = require("./routes/metropolitan.routes");
 app.use("/", collections);
 //RUTAS SIMPLEMENTE PARA TESTEAR
 const test = require("./routes/test.routes");
 app.use("/test", test);
+const panel = require("./routes/control-panel.routes");
+app.use("/", panel);
 
 const places = require("./routes/places.routes");
 app.use("/", places);

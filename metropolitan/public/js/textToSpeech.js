@@ -1,4 +1,8 @@
+
+
+
 // Initialize new SpeechSynthesisUtterance object
+
 let speech = new SpeechSynthesisUtterance();
 
 // Set Speech Language
@@ -23,7 +27,6 @@ window.speechSynthesis.onvoiceschanged = () => {
 /// TESTING 
 speech.text = document.querySelector("#presentationText").innerHTML
 
-// Start Speaking
 window.speechSynthesis.speak(speech);
 
 /// TESTING

@@ -13,7 +13,7 @@ const collectionSchema = new Schema(
         bgImage: {
             type: String,
         },
-        params: {
+        searchParams: {
             type: ['String'],
             required: true,
         },
