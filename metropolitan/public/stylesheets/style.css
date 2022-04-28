@@ -21,6 +21,49 @@
     margin: 40px;
     margin-left: 250px;
     margin-right: 250px;
+    border-radius: 20px;
+}
+
+#collection {
+    color: #000;
+    background-color: rgb(41, 40, 40);
+    padding: 10px;
+    padding-bottom: 20px;
+    opacity: 0.7;
+    font-size: large;
+    margin: 60px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: 150px;
+    border-radius: 20px;
+}
+
+#generate {
+    color: #000;
+    background-color: rgb(41, 40, 40);
+    padding: 10px;
+    padding-bottom: 20px;
+    opacity: 0.7;
+    font-size: large;
+    margin: 60px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: 150px;
+    border-radius: 20px;
+}
+
+#generate h2 {
+    text-align: center;
+    color: rgb(252, 252, 252);
+}
+
+#collection h2 {
+    text-align: center;
+    color: rgb(252, 252, 252);
+}
+
+#btn {
+    width: 150px;
 }
 
 #login h3 {
@@ -292,7 +335,7 @@ h6,
 }
 
 #book-ticket {
-    margin-left: 450px;
+    margin-left: 400px;
 }
 
 .col-4 img {

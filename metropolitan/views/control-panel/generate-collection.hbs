@@ -1,17 +1,47 @@
 <div class="container">
-<h1>Item collection</h1>
+    <form class="row g-4" id="generate" action="/create-collection" method="POST">
+        <h2>New Collection</h2>
+        <hr>
+        <div class="col-md-12">
 
-<p>{{searchParams}}</p>
-{{#each artItemDataArr}}
-<p>{{title}}</p>
-<a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
-<p>image URL: {{primaryImageSmall}}</p>
-{{/each}}
-{{#each artIds}}
-<p>{{this}}</p>
+            <input type="text" id="title" class="form-control" placeholder="Título" name="title">
+        </div>
+        <div class="col-md-12">
+            <input type="text" id="description" class="form-control" placeholder="Descripción" name="description">
+        </div>
+        <div class="col-md-12">
+            <input type="text" id="bgImage" class="form-control" placeholder="Image" name="bgImage">
 
-{{/each}}
+        </div>
+        <div>
+            <input type="hidden" id="artIds" name="artItemsList" value={{artIds}}>
+            <input type="hidden" id="searchParams" name="searchParams" value={{searchParams}}>
+        </div>
+        <div class="col-12" style="width: 25px;">
+            <button class="btn btn-secondary" id="btn" type="submit">Save Collection</button>
+        </div>
+    </form>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h1>Item collection</h1>
+            <p>{{searchParams}}</p>
+            {{#each artItemDataArr}}
+            <p>{{title}}</p>
+            <a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+            <p>image URL: {{primaryImageSmall}}</p>
+            {{/each}}
+            {{#each artIds}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+{{!--
 <form action="/create-collection" method="POST" class="create-collection">
     <input type="text" id="title" placeholder="Título" name="title">
     <input type="text" id="description" placeholder="Descripción" name="description">
@@ -19,9 +49,20 @@
     <input type="hidden" id="artIds" name="artItemsList" value={{artIds}}>
     <input type="hidden" id="searchParams" name="searchParams" value={{searchParams}}>
     <button id="createhBtn" type="submit">Create collection</button>
-</form>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
+</form> --}}
+
+
+
+{{!-- <div class="card bg-dark text-white">
+    {{#each artItemDataArr}}
+    <p>{{title}}</p>
+    <a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+    <div class="card-img-overlay">
+        <p>image URL: {{primaryImageSmall}}</p>
+    </div>
+    {{/each}}
+    {{#each artIds}}
+    <p>{{this}}</p>
+    {{/each}}
 </div>
+--}}
