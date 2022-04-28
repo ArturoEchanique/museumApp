@@ -5,7 +5,10 @@ const commentSchema = new Schema(
         text: {
             type: String,
         },
-        owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        owner: [{ 
+            type: Schema.Types.ObjectId, 
+            ref: 'User' 
+        }],
         state: {
             type: String,
             enum: ["APPROVED", "PENDANT", "REJECTED"],

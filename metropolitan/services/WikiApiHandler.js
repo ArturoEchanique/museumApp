@@ -19,9 +19,11 @@ class WikipediaHandler {
         return this.axiosApp.get(`/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${paramsString}`)
     }
 
-    getImageArtis(searchParams) {
+    getArtistImage(searchParams) {
 
-        return this.axiosApp.get(`/w/api.php?action=query&titles=Image:${searchParams}.jpg&prop=imageinfo&iiprop=url`)
+        let paramsString = ""
+        return this.axiosApp.get(`/w/api.php?action=query&titles=${searchParams}&prop=pageimages&format=json&pithumbsize=100`)
+        // return this.axiosApp.get(`/w/api.php?action=query&titles=Image:${searchParams}.jpg&prop=imageinfo&iiprop=url`)
     }
 
 }
