@@ -25,7 +25,7 @@ router.get("/", (req, res, next) => {
       let artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
       let maxItemsToSlice = artApiIds.length
       if (maxItemsToSlice % 2 == 1) maxItemsToSlice -= 1
-      artApiIds = artApiIds.slice(0, maxItemsToSlice)
+      artApiIds = artApiIds.slice(0, 3)
       const promisesArr = artApiIds.map(id => metAPI.getOneArtwork(id))
       return Promise.all(promisesArr)
     })
@@ -38,7 +38,16 @@ router.get("/", (req, res, next) => {
     .then(artItems => {
       console.log("el objeto es..", artItems)
       collectionData.artItems = artItems
-      console.log("ESTO---------------------", collectionData.artItems[0].apiId)
+      console.log("ESTO---------------------", collectionData.artItems[0])
+      collectionData.artItems.forEach(artItem =>{
+        collectionData.artApiItems.forEach(artApiItem => {
+          if(artItem.apiId == artApiItem.objectID) {
+            artItem.image = artApiItem.primaryImageSmall
+            artItem.title = artApiItem.title
+          }
+        })
+      })
+      console.log("la colection data es",collectionData.collection._id)
       res.render("index", collectionData)
     })
     .catch(err => next(err))

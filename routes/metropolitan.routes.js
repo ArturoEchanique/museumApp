@@ -20,8 +20,9 @@ router.get('/discover', (req, res, next) => {
     const artistData = {}
 
     //necesitamos una forma de obtener uno de forma aleatoria
-    Artist.findOne()
-        .then(artist => {
+    Artist.find()
+        .then(artists => {
+            const artist = artists[Math.floor(Math.random() * artists.length)]
             artistData.name = artist.name
             nameArr = artist.searchParams.split("-")
             return wikipediaAPI
@@ -34,12 +35,21 @@ router.get('/discover', (req, res, next) => {
             artistData.text = textPresentation
             return wikipediaAPI.getArtistImage(nameArr)
         })
-        .then(({ data }) => {
-            // artistData.image = data.query.pages.thumbnail.source
-            console.log("la data es...:", data)
+        .then(({ artistImage }) => {
+            return Collection.findOne({ title: artistData.name }).populate("artItemsList")
+        })
+        
+        .then(collection => {
+            const artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
+            const promisesArr = artApiIds.map(id => metAPI.getOneArtwork(id))
+            return Promise.all(promisesArr)
+        })
+        .then(responses => responses.map(elm => elm.data))
+        .then(artItems => {
+            artistData.artItems = artItems
             res.render('discover', artistData)
         })
-
+        .catch(err => console.log(err))
 })
 
 router.get('/collections', (req, res, next) => {
@@ -77,7 +87,8 @@ router.get('/collections/:collectionId', (req, res, next) => {
 router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     const { artApiId, collectionId } = req.params
     const artItemData = {}
-    const userId = req.session.currentUser._id
+    let userId
+    req.session.currentUser ?  userId = req.session.currentUser._id : userId = undefined
     artItemData.collectionId = collectionId
     artItemData.inCollection = true
 
@@ -86,7 +97,7 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
         .populate("comments")
         .then(artItem => {
             artItemData.artItem = artItem
-            return User.findById(userId)
+            return User.findOne(userId)
         })
         .then(user => {
             if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
@@ -97,7 +108,7 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
             artItemData.apiData = data
             res.render('collections/artwork', artItemData)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {

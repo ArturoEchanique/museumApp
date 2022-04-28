@@ -85,161 +85,24 @@
             <p class="f-w-16 mb-4">Brouse latest tips from our blog </p>
         </div>
         <div class="row">
+            {{#each artItems}}
             <div class="col-lg-4">
-                <div class="boot-card"><a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff"
-                            alt="Image articles" class="img-fluid"></a>
+                <div class="boot-card"><a href="/collections/{{../collection.id}}/art/{{apiId}}"><img src="{{image}}" alt="Image articles" class="img-fluid"></a>
                     <div class="boot-caption py-4 px-3">
-                        <div class="boot-meta">
-                            <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                    Brown</a></h4>
-                        </div>
-                        <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse cillum
-                                dolore eu fugiat</a></h3>
-                        <p class="f-16 mb-0">I am text block. Click edit button to change this text. Lorem ipsum dolor
-                            sit amet.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="boot-card"><a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff"
-                            alt="Image articles" class="img-fluid"></a>
-                    <div class="boot-caption py-4 px-3">
-                        <div class="boot-meta">
-                            <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                    Brown</a></h4>
-                        </div>
-                        <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse cillum
-                                dolore eu fugiat</a></h3>
-                        <p class="f-16 mb-0">I am text block. Click edit button to change this text. Lorem ipsum dolor
-                            sit amet.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="boot-card"><a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff"
-                            alt="Image articles" class="img-fluid"></a>
-                    <div class="boot-caption py-4 px-3">
-                        <div class="boot-meta">
-                            <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                    Brown</a></h4>
-                        </div>
-                        <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse cillum
-                                dolore eu fugiat</a></h3>
-                        <p class="f-16 mb-0">I am text block. Click edit button to change this text. Lorem ipsum dolor
-                            sit amet.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="boot-elemant gradient-primary py-md-5 py-4">
-    <div class="container position-relative py-md-5 py-0">
-        <div class="boot-block pb-md-5 pb-4 text-center">
-            <span class="text-uppercase text-white">boot </span>
-            <h2 class="display-4 text-white font-weight-bold">Articles</h2>
-            <p class="f-w-16 mb-4">Brouse latest tips from our blog </p>
-        </div>
-        <div class="row">
-            {{#each artApiItems}}
-            <div class="col-lg-6">
-                <div class="boot-card mb-5 shadow-lg">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-6">
-                            <a href="#"><img src="{{primaryImageSmall}}" alt="Image articles" class="img-fluid"></a>
+                        <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">{{title}}</a></h3>
+                        <div class="boot-meta">
+                            <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
+                                    Brown</a></h4>
                         </div>
-                        <div class="col-md-6 col-lg-6">
-                            <div class="boot-caption py-2 px-4">
-                                <div class="boot-meta">
-                                    <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                            Brown</a></h4>
-                                </div>
-                                <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse
-                                        cillum dolore eu fugiat</a></h3>
-                                <p class="f-14 mb-0">
-                                    {{#each ../artItems}}
-                                    {{#each comments}}
-                                    {{text}}
-                                    {{/each}}</p>
-                                    {{/each}}</p>
-                            </div>
-                        </div>
-                    </div>
 
+                        <p class="f-14 mb-0">{{comments.[1].text}}</p>
+
+                        <p class="f-16 mb-0"></p>
+                    </div>
                 </div>
             </div>
             {{/each}}
-            {{!-- <div class="col-lg-6">
-                <div class="boot-card mb-5 shadow-lg">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-6">
-                            <a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff" alt="Image articles"
-                                    class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-                            <div class="boot-caption py-2 px-4">
-                                <div class="boot-meta">
-                                    <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                            Brown</a></h4>
-                                </div>
-                                <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse
-                                        cillum dolore eu fugiat</a></h3>
-                                <p class="f-14 mb-0">I am text block. Click edit button to change this text. Lorem ipsum
-                                    dolor sit amet.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="boot-card mb-5 shadow-lg">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-6">
-                            <a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff" alt="Image articles"
-                                    class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-                            <div class="boot-caption py-2 px-4">
-                                <div class="boot-meta">
-                                    <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                            Brown</a></h4>
-                                </div>
-                                <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse
-                                        cillum dolore eu fugiat</a></h3>
-                                <p class="f-14 mb-0">I am text block. Click edit button to change this text. Lorem ipsum
-                                    dolor sit amet.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="boot-card mb-5 shadow-lg">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-6">
-                            <a href="#"><img src="https://via.placeholder.com/1920/09f.png/fff" alt="Image articles"
-                                    class="img-fluid"></a>
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-                            <div class="boot-caption py-2 px-4">
-                                <div class="boot-meta">
-                                    <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
-                                            Brown</a></h4>
-                                </div>
-                                <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">velit esse
-                                        cillum dolore eu fugiat</a></h3>
-                                <p class="f-14 mb-0">I am text block. Click edit button to change this text. Lorem ipsum
-                                    dolor sit amet.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div> --}}
-
         </div>
     </div>
 </section>
