@@ -89,6 +89,14 @@ footer {
     height: 300px;
 }
 
+#control {
+    margin-top: 30px;
+}
+
+#control h1 {
+    color: #ddd;
+}
+
 .presentationMain p {
     font-size: 1.35em;
 }
