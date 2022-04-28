@@ -1,0 +1,24 @@
+<video autoplay muted loop id="myVideo">
+    <source src="./videos/museum.mp4" type="video/mp4">
+</video>
+<form class="row g-3" id="sing-up" action="/create-artist" method="POST">
+    <h3>Create Artist</h3>
+    <div class="col-md-4">
+        <label for="name" class="form-label">Artist Name</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="col-md-4">
+        <label for="searchParams" class="form-label">Search Params</label>
+        <input type="text" class="form-control" id="searchParams" name="searchParams">
+    </div>
+    <div class="col-12">
+        <button class="btn btn-dark" type="submit">Create Artist</button>
+    </div>
+</form>
+<div class="container">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <a href="/list-artist"><button class="btn btn-dark" type="submit">Artists List</button></a>
+        </div>
+    </div>
+</div>
