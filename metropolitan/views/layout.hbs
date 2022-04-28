@@ -49,10 +49,12 @@
                      <button class="nav-link">Cerrar Sesion</button>
                   </form>
                   {{/if}}
-                  
+                  {{#if isAdmin}}
                   <li class="nav-item">
                      <a class="nav-link" id="presentation" href="/control-panel">Control panel</a>
                   </li>
+                  {{/if}}
+                 
                   <button type="button" id="book-ticket" class="btn btn-info">Book tickets</button>
                </ul>
             </div>

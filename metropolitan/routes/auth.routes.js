@@ -39,6 +39,8 @@ router.post('/login', (req, res, next) => {
                 return
             } else {
                 req.app.locals.isLoggedIn = true
+                if (user.role === "ADMIN") req.app.locals.isAdmin = true
+                else req.app.locals.isAdmin = false
                 req.session.currentUser = user
                 res.redirect('/')
             }
