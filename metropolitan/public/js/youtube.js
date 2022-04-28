@@ -8,12 +8,22 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player;
+let apiVideoId = 'ez1YgRexThQ'
+
+function getVideoId() {
+
+    axios.get('/api/videos')
+        .then(({ data }) => {
+            apiVideoId = data.videoId
+        })
+        .catch(err => console.log(err))
+}
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '360',
         width: '640',
-        videoId: 'ez1YgRexThQ',
+        videoId: apiVideoId,
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange

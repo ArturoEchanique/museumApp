@@ -13,7 +13,15 @@ router.get('/video', (req, res, next) => {
         })
 
     //res.render('video/video', data.items[0].id.videoId))
+})
 
+router.get("/api/videos", (req, res) => {
+
+    res.json('ez1YgRexThQ')
+    // Place
+    //     .find()
+    //     .then(places => res.json(places))
+    //     .catch(err => console.log(err))
 })
 
 
