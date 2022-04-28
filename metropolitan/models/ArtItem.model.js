@@ -11,7 +11,6 @@ const artItemSchema = new Schema({
     artGallery: {
         type: Schema.Types.ObjectId,
         ref: 'ArtGallery',
-        required: [true, 'Indicate an art Gallery']
     },
     comments: [{
         type: Schema.Types.ObjectId,

@@ -20,7 +20,7 @@
    <header>
       <nav id="nav" class="navbar navbar-expand-lg navbar-dark">
          <div class="container-fluid">
-            <a class="navbar-brand" href="/">MUSEUM</a>
+            <a class="navbar-brand" href="/"> LAMUSSE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -33,21 +33,31 @@
                   <li class="nav-item">
                      <a class="nav-link" href="/collections">Colecciones</a>
                   </li>
+                  {{#unless isLoggedIn}}
                   <li class="nav-item">
                      <a class="nav-link" href="/login">Iniciar Sesion</a>
                   </li>
+                  {{/unless}}
+                  {{#unless isLoggedIn}}
                   <li class="nav-item">
                      <a class="nav-link" href="/register">Registrate</a>
                   </li>
+                  {{/unless}}
+                  
                   <li class="nav-item">
                      <a class="nav-link" id="presentation" href="/discover">Descubrir</a>
                   </li>
+                  {{#if isLoggedIn}}
                   <form action="logOut" method="POST">
                      <button class="nav-link">Cerrar Sesion</button>
                   </form>
+                  {{/if}}
+                  {{#if isAdmin}}
                   <li class="nav-item">
                      <a class="nav-link" id="presentation" href="/control-panel">Control panel</a>
                   </li>
+                  {{/if}}
+                 
                   <button type="button" id="book-ticket" class="btn btn-info">Book tickets</button>
                </ul>
             </div>
@@ -147,8 +157,19 @@
             <a class="text-white" href="#">Developed By Fernando, Arturo y Pablo</a>
          </div>
       </div>
+<<<<<<< HEAD
 
 
+=======
+      {{#if isLoggedIn}}
+      <p>ahuorighaoiuerhf ahfuihweoifh uhaef iouahwefo auhseof ihfe</p>
+      {{/if}}
+      <p></p>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+         © 2021 Copyright:
+         <a class="text-white" href="#">Developed By Fernando, Arturo y Pablo</a>
+      </div>
+>>>>>>> 591563342600b060cad150530fff251dbbb4248f
    </footer>
 
 

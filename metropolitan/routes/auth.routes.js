@@ -30,12 +30,17 @@ router.post('/login', (req, res, next) => {
         .findOne({ email })
         .then(user => {
             if (!user) {
+                req.app.locals.isLoggedIn = false
                 res.render('auth/login', { errorMessage: 'Email no registrado' })
                 return
             } else if (bcrypt.compareSync(password, user.password) === false) {
+                req.app.locals.isLoggedIn = false
                 res.render('auth/login', { errorMessage: 'La contraseña es incorrecta' })
                 return
             } else {
+                req.app.locals.isLoggedIn = true
+                if (user.role === "ADMIN") req.app.locals.isAdmin = true
+                else req.app.locals.isAdmin = false
                 req.session.currentUser = user
                 res.redirect('/')
             }
@@ -44,6 +49,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/logout', (req, res, next) => {
+    req.app.locals.isLoggedIn = false
     req.session.destroy(() => res.redirect('/login'))
 })
 

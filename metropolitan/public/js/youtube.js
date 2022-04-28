@@ -18,11 +18,6 @@ function getVideoId() {
 }
 
 function onYouTubeIframeAPIReady() {
-    // getVideoId()
-    //     .then(({ data }) => {
-    //         data.forEach(apiId => apiVideoIds.push(apiId))
-    //         return
-    //     })
     getVideoId()
         .then(({ data }) => {
             data.forEach(apiVideoId => {
