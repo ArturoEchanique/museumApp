@@ -5,7 +5,7 @@ const collectionSchema = new Schema(
     {
         title: {
             type: String,
-            required: true,
+            required: [true, 'Indicate a title']
         },
         description: {
             type: String,
@@ -15,9 +15,13 @@ const collectionSchema = new Schema(
         },
         searchParams: {
             type: ['String'],
-            required: true,
+            required: [true, 'Indicate the search params']
         },
-        artItemsList: [{ type: Schema.Types.ObjectId, ref: 'ArtItem' }],
+        artItemsList: [{
+            type: Schema.Types.ObjectId,
+            ref: 'ArtItem',
+            default: [],
+        }],
     },
     {
         timestamps: true

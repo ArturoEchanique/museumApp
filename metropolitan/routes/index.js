@@ -13,4 +13,6 @@ module.exports = app => {
     app.use("/", panel);
     const places = require("./places.routes");
     app.use("/", places);
+    const video = require("./video.routes");
+    app.use("/", video);
 }
