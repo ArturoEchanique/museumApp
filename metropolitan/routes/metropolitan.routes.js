@@ -100,30 +100,6 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// router.get('/art/:artApiId', (req, res, next) => {
-//     const { artApiId, collectionId } = req.params
-//     const artItemData = {}
-//     const userId = req.session.currentUser._id
-//     artItemData.inCollection = false
-
-//     ArtItem
-//         .findOne({ 'apiId': artApiId })
-//         .then(artItem => {
-//             artItemData.artItem = artItem
-//             return User.findById(userId)
-//         })
-//         .then(user => {
-//             if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
-//             else artItemData.alreadyLiked = false
-//             return artworkAPI.getOneArtwork(artApiId)
-//         })
-//         .then(({ data }) => {
-//             artItemData.apiData = data
-//             res.render('collections/artwork', artItemData)
-//         })
-//         .catch(err => console.log(err))
-// })
-
 router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
     const { artId } = req.params
     const { artApiId } = req.body
