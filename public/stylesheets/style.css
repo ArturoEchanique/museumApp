@@ -228,7 +228,6 @@ footer {
 /* ----------------------------main sections ----------------- */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500,600,700');
-
 body,
 html {
     font-family: 'Poppins', sans-serif;
@@ -336,7 +335,7 @@ h6,
 }
 
 #book-ticket {
-    margin-left: 400px;
+    margin-left: 600px;
 }
 
 .col-4 img {
