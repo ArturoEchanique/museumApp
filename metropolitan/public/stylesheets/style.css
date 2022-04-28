@@ -105,6 +105,11 @@ footer {
     padding: 170px 0px;
 }
 
+.videoLayout{
+    background-color: red;
+    padding: 150px;
+}
+
 
 /* VIDEO */
 
@@ -277,6 +282,7 @@ h6,
 #book-ticket {
     margin-left: 450px;
 }
+
 
 
 /* NO TOCAR ARRIBA*/
