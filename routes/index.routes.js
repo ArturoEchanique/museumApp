@@ -32,11 +32,11 @@ router.get("/", (req, res, next) => {
     .then(responses => responses.map(elm => elm.data))
     .then(artApiItems => {
       collectionData.artApiItems = artApiItems
-      const promisesArr = artApiItems.map(artApiItem => ArtItem.find({ apiId: artApiItem.objectID }).populate("comments"))
+      const promisesArr = artApiItems.map(artApiItem => ArtItem.findOne({ apiId: artApiItem.objectID }).populate("comments"))
       return Promise.all(promisesArr)
     })
     .then(artItems => {
-      console.log(artItems)
+      console.log("el objeto es..", artItems)
       collectionData.artItems = artItems
       console.log("ESTO---------------------", collectionData.artItems[0].apiId)
       res.render("index", collectionData)
