@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>EDit Artist</h1>
+    <hr>
+
+    <form class="row g-5" id="edit-artist" action="/artist/{{_id}}/edit" method="POST">
+        <div class="col-md-12">
+            <label for="name" class="form-label">Artist Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+        </div>
+        <div class="col-md-12">
+            <label for="searchParams" class="form-label">Search Params</label>
+            <input type="text" class="form-control" id="searchParams" name="searchParams" value="{{searchParams}}">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-dark" type="submit">Save</button>
+        </div>
+    </form>
