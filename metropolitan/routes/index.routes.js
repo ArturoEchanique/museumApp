@@ -6,7 +6,7 @@ const wikipediaAPI = new WikipediaHandler();
 
 const DeezerApiHandler = require('../apiHandlers/DeezerApiHandler')
 const deezerAPI = new DeezerApiHandler();
-const router = require("express").Router();
+
 
 router.get("/", (req, res, next) => {
   res.render("index")
