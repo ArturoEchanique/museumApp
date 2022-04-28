@@ -12,6 +12,8 @@
 }
 
 #login {
+    color: #000;
+    font-size: large;
     margin: 40px;
     margin-left: 400px;
     margin-right: 400px;
@@ -95,9 +97,12 @@ footer {
     padding: 170px 0px;
 }
 
+
 /* VIDEO */
 
+
 /* Style the video: 100% width and height to cover the entire window */
+
 #myVideo {
     position: fixed;
     right: 0;
@@ -117,7 +122,9 @@ footer {
     padding: 30px;
 }
 
+
 /* Add some content at the bottom of the video/page */
+
 .content {
     position: fixed;
     bottom: 0;
@@ -127,7 +134,9 @@ footer {
     padding: 20px;
 }
 
+
 /* Style the button used to pause/play the video */
+
 #myBtn {
     width: 200px;
     font-size: 18px;
@@ -144,11 +153,9 @@ footer {
 }
 
 
-
 /* ----------------------------main sections ----------------- */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500,600,700');
-
 body,
 html {
     font-family: 'Poppins', sans-serif;
@@ -186,18 +193,12 @@ h6,
 }
 
 .gradient-primary {
-
     background: #007bff;
-
     background: -moz-linear-gradient(left, #007bff 1%, #0021dd 100%);
-
     background: -webkit-linear-gradient(left, #007bff 1%, #0021dd 100%);
-
     background: linear-gradient(to right, #007bff 1%, #0021dd 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007bff', endColorstr='#0021dd', GradientType=1);
-
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#007bff', endColorstr='#0021dd', GradientType=1);
 }
-
 
 .btn-outline-white {
     border: 1px solid #fff;
@@ -214,7 +215,6 @@ h6,
 .btn {
     position: relative;
     border-radius: 0px;
-
 }
 
 .position-relative {
@@ -262,6 +262,12 @@ h6,
     padding: 50px;
 }
 
+#book-tickets {
+    margin-left: 450px;
+}
+
+
 /* NO TOCAR ARRIBA*/
+
 
 /* ----------------CARROUSEL------------------- */
