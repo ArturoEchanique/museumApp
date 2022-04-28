@@ -17,33 +17,28 @@ function getVideoId() {
     return axios.get('/api/videos')
 }
 
-function onYouTubeIframeAPIReady() {
-    // getVideoId()
-    //     .then(({ data }) => {
-    //         data.forEach(apiId => apiVideoIds.push(apiId))
-    //         return
-    //     })
-    getVideoId()
-        .then(({ data }) => {
-            data.forEach(apiVideoId => {
-                iteration++
-                player = new YT.Player('player'+iteration, {
-                    height: '340',
-                    width: '540',
-                    videoId: apiVideoId,
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
-                })
-            })
+// function onYouTubeIframeAPIReady() {
+//     getVideoId()
+//         .then(({ data }) => {
+//             data.forEach(apiVideoId => {
+//                 iteration++
+//                 player = new YT.Player('player'+iteration, {
+//                     height: '340',
+//                     width: '540',
+//                     videoId: apiVideoId,
+//                     events: {
+//                         'onReady': onPlayerReady,
+//                         'onStateChange': onPlayerStateChange
+//                     }
+//                 })
+//             })
 
-        })
-        .catch(err => console.log(err))
+//         })
+//         .catch(err => console.log(err))
 
-    console.log('00000', videoId)
+//     console.log('00000', videoId)
 
-}
+// }
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {

@@ -13,13 +13,26 @@ const wikipediaAPI = new WikipediaHandler();
 
 const router = require("express").Router();
 
-artwuro
-
-
-ArtItem
-.find()
-.then(artItems)
 router.get("/", (req, res, next) => {
+
+  // Collection
+  //   .findOne()
+  //   .populate("artItemsList")
+  //   .then(collection => {
+  //     collectionData.collection = collection
+  //     const artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
+  //     const promisesArr = artApiIds.map(id => metAPI.getOneArtwork(id))
+  //     return Promise.all(promisesArr)
+  //   })
+  //   .then(responses => responses.map(elm => elm.data))
+  //   .then(artItems => {
+  //     collectionData.artItems = artItems
+  //     res.render("index", collectionData)
+  //   })
+  //   .catch(err => console.log(err))
+  // ArtItem
+  //   .find()
+  //   .then(artItems)
   res.render("index")
 })
 

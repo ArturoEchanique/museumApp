@@ -30,18 +30,26 @@
                   <li class="nav-item">
                      <a class="nav-link" href="/collections">Colecciones</a>
                   </li>
+                  {{#unless isLoggedIn}}
                   <li class="nav-item">
                      <a class="nav-link" href="/login">Iniciar Sesion</a>
                   </li>
+                  {{/unless}}
+                  {{#unless isLoggedIn}}
                   <li class="nav-item">
                      <a class="nav-link" href="/register">Registrate</a>
                   </li>
+                  {{/unless}}
+                  
                   <li class="nav-item">
                      <a class="nav-link" id="presentation" href="/discover">Descubrir</a>
                   </li>
+                  {{#if isLoggedIn}}
                   <form action="logOut" method="POST">
                      <button class="nav-link">Cerrar Sesion</button>
                   </form>
+                  {{/if}}
+                  
                   <li class="nav-item">
                      <a class="nav-link" id="presentation" href="/control-panel">Control panel</a>
                   </li>
@@ -173,6 +181,10 @@
             </section>
          </div>
       </div>
+      {{#if isLoggedIn}}
+      <p>ahuorighaoiuerhf ahfuihweoifh uhaef iouahwefo auhseof ihfe</p>
+      {{/if}}
+      <p></p>
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
          © 2021 Copyright:
          <a class="text-white" href="#">Developed By Fernando, Arturo y Pablo</a>
