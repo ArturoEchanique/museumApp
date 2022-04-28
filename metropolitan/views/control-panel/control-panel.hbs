@@ -1,12 +1,46 @@
-CONTROL PANEL
-
-<div class="container">
+{{!-- <div class="container">
     <div class="controlPanel">
-        <a class="btn btn-primary" href="/create-collection">Create collection</a>
-        <a class="btn btn-danger" href="/">Create gallery</a>
+        <a class="btn btn-primary" src="../../images/descarga.jpg" href="/create-collection">Create collection</a>
+        <a class="btn btn-danger" href="/createplaces">Create gallery</a>
         <a class="btn btn-warning" href="/create-artist">Create artist</a>
         <a class="btn btn-warning" href="/users">Users</a>
         <a class="btn btn-warning" href="/comments">Comments</a>
+    </div>
+</div> --}}
 
+<div id="control" class="container">
+    <h1>Control Panel</h1>
+    <div class="row">
+        <div class="col-4" id="im">
+            <a class="btn btn-floating m-1" href="/create-collection" style="color: aliceblue;" role="button"><img
+                    src="../../images/descarga.jpg" /> CREATE A NEW COLECTION
+            </a>
+        </div>
+        <div class="col-4">
+            <a class="btn btn-floating m-1" style="color: aliceblue;" href="/createplaces">
+                <img src="../../images/descarga5.jpg" class="img-thumbnail" alt="...">ADD A GALLERY
+            </a>
+
+        </div>
+        <div class="col-4">
+            <a class="btn btn-floating m-1" href="/create-artist" style="color: aliceblue;" role="button"><img
+                    src="../../images/descarga2.jpg" class="img-thumbnail" alt="...">
+                CREATE AN ARTIST
+            </a>
+
+        </div>
+        <div class="col-4">
+            <a class="btn btn-floating m-1" href="/users" style="color: aliceblue;" role="button"><img
+                    src="../../images/descarga3.jpg" class="img-thumbnail" alt="...">
+                EDIT USERS
+            </a>
+
+        </div>
+        <div class="col-4">
+            <a class="btn btn-floating m-1" href="/comments" style="color: aliceblue;" role="button"><img
+                    src="../../images/descarga4.jpg" class="img-thumbnail" alt="...">
+                EDIT COMMENTS
+            </a>
+        </div>
     </div>
 </div>

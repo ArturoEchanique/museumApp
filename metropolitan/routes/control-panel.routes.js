@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const User = require('../models/User.model')
+const Comments = require('../models/Comment.model')
 const Collection = require('../models/Collection.model')
 const Artist = require('../models/Artist.model')
 const ArtItem = require('../models/ArtItem.model')
@@ -79,7 +80,29 @@ router.post('/create-collection', (req, res, next) => {
         .then((collection) => {
             res.redirect(`/collections`)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
+})
+
+router.get('/comments', (req, res, next) => {
+
+    Comments
+        .find()
+        .populate('owner')
+        .then(comment => {
+            res.render('comments/comments', { comment })
+        })
+        .catch(err => next(err))
+})
+
+router.post('/comments/:id/delete', (req, res, next) => {
+    const { id } = req.params
+
+    Comments
+        .findByIdAndRemove(id)
+        //.populate('owner')
+        .then(() => {
+            res.redirect('/comments')
+        })
 })
 
 module.exports = router

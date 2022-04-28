@@ -39,7 +39,7 @@ router.get('/discover', (req, res, next) => {
             console.log("la data es...:", data)
             res.render('discover', artistData)
         })
-    
+
 })
 
 router.get('/collections', (req, res, next) => {
@@ -100,30 +100,6 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// router.get('/art/:artApiId', (req, res, next) => {
-//     const { artApiId, collectionId } = req.params
-//     const artItemData = {}
-//     const userId = req.session.currentUser._id
-//     artItemData.inCollection = false
-
-//     ArtItem
-//         .findOne({ 'apiId': artApiId })
-//         .then(artItem => {
-//             artItemData.artItem = artItem
-//             return User.findById(userId)
-//         })
-//         .then(user => {
-//             if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
-//             else artItemData.alreadyLiked = false
-//             return artworkAPI.getOneArtwork(artApiId)
-//         })
-//         .then(({ data }) => {
-//             artItemData.apiData = data
-//             res.render('collections/artwork', artItemData)
-//         })
-//         .catch(err => console.log(err))
-// })
-
 router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
     const { artId } = req.params
     const { artApiId } = req.body
@@ -134,7 +110,6 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
             if (!user.favoriteItems.includes(artId)) {
                 ArtItem
                     .findByIdAndUpdate(artId, { $inc: { likes: 1 } })
-                    // .then(art => console.log("el art item es", art))
                     .then(artItem => {
                         return User.findByIdAndUpdate(userId, { $push: { favoriteItems: artId } })
                     })
@@ -142,11 +117,9 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
                         res.redirect(`/art/${artApiId}`)
                     })
                     .catch(err => console.log(err))
-            }
-            else {
+            } else {
                 ArtItem
                     .findByIdAndUpdate(artId, { $inc: { likes: -1 } })
-                    // .then(art => console.log("el art item es", art))
                     .then(artItem => {
                         return User.findByIdAndUpdate(userId, { $pull: { favoriteItems: artId } })
                     })
