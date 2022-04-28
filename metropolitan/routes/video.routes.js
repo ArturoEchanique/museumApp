@@ -15,19 +15,18 @@ const youtube = new Youtube()
 // })
 
 router.get("/api/videos", (req, res, next) => {
-    console.log("entering api")
 
-    // youtube
-    //     .getSearch('renoir')
-    //     .then(({ data }) => {
-    //         let dataItems = data.items.slice(0, 2)
-    //         let videoIds = []
-    //         dataItems.forEach(dataItem =>{
-    //              videoIds.push(dataItem.id.videoId)
-    //          })
-    //         res.json(videoIds)
-    //     })
-    //     .catch(error => next(error))
+    youtube
+        .getSearch('renoir')
+        .then(({ data }) => {
+            let dataItems = data.items.slice(0, 2)
+            let videoIds = []
+            dataItems.forEach(dataItem =>{
+                 videoIds.push(dataItem.id.videoId)
+             })
+            res.json(videoIds)
+        })
+        .catch(error => next(error))
 })
 
 
