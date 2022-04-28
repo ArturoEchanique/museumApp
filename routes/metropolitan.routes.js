@@ -39,7 +39,7 @@ router.get('/discover', (req, res, next) => {
             console.log("la data es...:", data)
             res.render('discover', artistData)
         })
-    
+
 })
 
 router.get('/collections', (req, res, next) => {
@@ -110,7 +110,6 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
             if (!user.favoriteItems.includes(artId)) {
                 ArtItem
                     .findByIdAndUpdate(artId, { $inc: { likes: 1 } })
-                    // .then(art => console.log("el art item es", art))
                     .then(artItem => {
                         return User.findByIdAndUpdate(userId, { $push: { favoriteItems: artId } })
                     })
@@ -118,11 +117,9 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
                         res.redirect(`/art/${artApiId}`)
                     })
                     .catch(err => console.log(err))
-            }
-            else {
+            } else {
                 ArtItem
                     .findByIdAndUpdate(artId, { $inc: { likes: -1 } })
-                    // .then(art => console.log("el art item es", art))
                     .then(artItem => {
                         return User.findByIdAndUpdate(userId, { $pull: { favoriteItems: artId } })
                     })
