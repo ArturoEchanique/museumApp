@@ -1,27 +1,36 @@
-<div class="container">
-<h1>Item collection</h1>
+<div class="container" class=".mt-0">
+    <h1>Item collection</h1>
 
-<p>{{searchParams}}</p>
-{{#each artItemDataArr}}
-<p>{{title}}</p>
-<a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
-<p>image URL: {{primaryImageSmall}}</p>
-{{/each}}
-{{#each artIds}}
-<p>{{this}}</p>
+    <p>{{searchParams}}</p>
+    {{#each artItemDataArr}}
+    <p>{{title}}</p>
+    <a href="/art/art{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+    <p>image URL: {{primaryImageSmall}}</p>
+    {{/each}}
+    {{#each artIds}}
+    <p>{{this}}</p>
 
-{{/each}}
+    {{/each}}
 
-<form action="/create-collection" method="POST" class="create-collection">
-    <input type="text" id="title" placeholder="Título" name="title">
-    <input type="text" id="description" placeholder="Descripción" name="description">
-    <input type="text" id="bgImage" placeholder="background image" name="bgImage">
-    <input type="hidden" id="artIds" name="artItemsList" value={{artIds}}>
-    <input type="hidden" id="searchParams" name="searchParams" value={{searchParams}}>
-    <button id="createhBtn" type="submit">Create collection</button>
-</form>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
+    <form action="/create-collection" method="POST" class="create-collection">
+        <div class="col-md-4">
+            <input type="text" id="title" class="form-label" placeholder="Title" name="title">
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="description" class="form-label" placeholder="Description" name="description">
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="bgImage" class="form-label" placeholder="Url Cover Image" name="bgImage">
+        </div>
+        <div class="col-md-4">
+            <input type="hidden" id="artIds" class="form-label" name="artItemsList" value={{artIds}}>
+        </div>
+        <div class="col-md-4">
+            <input type="hidden" id="searchParams" class="form-label" name="searchParams" value={{searchParams}}>
+        </div>
+        <div class="col-md-4">
+            <button id="createhBtn" class="btn btn-dark" type="submit">Create collection</button>
+        </div>
+    </form>
+</div>
 </div>
