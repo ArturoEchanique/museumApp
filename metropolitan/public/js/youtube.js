@@ -8,28 +8,39 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player;
-let apiVideoId = 'ez1YgRexThQ'
+let iteration = 0;
+// let apiVideoId = 'ez1YgRexThQ'
+// let apiVideoIds = []
 
 function getVideoId() {
 
-    axios.get('/api/videos')
-        .then(({ data }) => {
-            apiVideoId = data.videoId
-        })
-        .catch(err => console.log(err))
+    return axios.get('/api/videos')
 }
 
 function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '360',
-        width: '640',
-        videoId: apiVideoId,
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
+    // getVideoId()
+    //     .then(({ data }) => {
+    //         data.forEach(apiId => apiVideoIds.push(apiId))
+    //         return
+    //     })
+    getVideoId()
+        .then(({ data }) => {
+            data.forEach(apiVideoId => {
+                iteration++
+                player = new YT.Player('player'+iteration, {
+                    height: '360',
+                    width: '640',
+                    videoId: apiVideoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                })
+            })
 
-    });
+        })
+        .catch(err => console.log(err))
+
     console.log('00000', videoId)
 
 }
