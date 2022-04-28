@@ -6,6 +6,8 @@ const Comment = require('../models/Comment.model')
 const User = require('../models/User.model')
 const Artist = require('../models/Artist.model')
 
+const CommentFilter = require('../services/CommentFilter.js')
+const commentFilter = new CommentFilter();
 const MetApiHandler = require('../services/MetApiHandler')
 const metAPI = new MetApiHandler();
 const APIHandler = require('../services/MetApiHandler')
@@ -97,10 +99,10 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
         .populate("comments")
         .then(artItem => {
             artItemData.artItem = artItem
-            return User.findOne(userId)
+            return User.findById(userId)
         })
         .then(user => {
-            if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
+            if (user?.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
             else artItemData.alreadyLiked = false
             return artworkAPI.getOneArtwork(artApiId)
         })
@@ -144,6 +146,8 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
+
+    commentFilter.filterComment("hello")
 
     const { artId } = req.params
     const { comment, collectionId, artApiId } = req.body

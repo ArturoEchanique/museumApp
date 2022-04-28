@@ -1,9 +1,11 @@
 let map
+let initialCords = [0, 0]
 
 function initMap() {
     renderMap()
     getPlaces()
     service()
+
 }
 
 function service() {
@@ -47,12 +49,23 @@ function service() {
 function renderMap() {
     const { Map, Marker } = google.maps
 
-    map = new Map(
-        document.querySelector('#map'), {
-            center: { lat: 40.7796, lng: -73.9629 },
-            zoom: 12,
-        }
-    )
+    axios
+        .get('/API/places')
+        .then(({ data }) => {
+            const gallery = [Math.floor(Math.random() * data.length)]
+            initialCords[0] = data[gallery].lat
+            initialCords[1] = data[gallery].long
+            console.log(initialCords)
+        })
+        .then(() =>{
+            map = new Map(
+                document.querySelector('#map'), {
+                center: { lat: initialCords[0], lng: initialCords[1] },
+                zoom: 12,
+            })
+        })
+        .catch(err => console.log(err))
+    
 }
 
 function getPlaces() {
@@ -60,11 +73,10 @@ function getPlaces() {
     axios
         .get('/API/places')
         .then(({ data }) => placeMarkers(data))
-        .catch(err => consoel.log(err))
+        .catch(err => console.log(err))
 }
 
 function placeMarkers(places) {
-    let marker
     const { Marker } = google.maps
 
     places.forEach(place => {

@@ -1,4 +1,4 @@
-
+window.speechSynthesis.cancel();
 
 
 // Initialize new SpeechSynthesisUtterance object

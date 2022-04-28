@@ -4,6 +4,9 @@
     <img src="{{apiData.primaryImageSmall}}" alt="">
 
 
+ 
+    <figure id="map"></figure>
+
     <form action="/art/{{artItem.id}}/favorite" method="POST">
         {{#if alreadyLiked}}
         <button class="btn btn-outline-dark" type="submit">Favorite ALREADY</button>
@@ -28,3 +31,11 @@
     <p>{{text}}</p>
     {{/each}}
 </div>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXfnCjCNoZ5DFVcicZ182oaJT54TZPb4&libraries=places"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/places-maps.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXfnCjCNoZ5DFVcicZ182oaJT54TZPb4&callback=initMap"></script>
+{{!-- <script src="/js/commentDLFilter.js"></script> --}}
