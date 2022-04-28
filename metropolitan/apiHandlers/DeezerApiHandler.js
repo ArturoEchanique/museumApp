@@ -7,6 +7,10 @@ class DeezerApiHandler {
         })
     }
 
+    test() {
+        console.log('entrando Deezer')
+    }
+
     getOneArtist(searchArtist) {
         return this.axiosApp.get(`/search?q=${searchArtist}`)
     }
