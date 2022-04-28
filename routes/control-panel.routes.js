@@ -25,14 +25,62 @@ router.get('/create-artist', (req, res, next) => {
 router.post('/create-artist', (req, res, next) => {
 
     const { name, searchParams } = req.body
+
     Artist
         .create({ name, searchParams })
         .then(artist => {
-            res.redirect('/control-panel')
+            res.redirect('/list-artist')
         })
         .catch(error => next(error))
 
 })
+router.get('/list-artist/', (req, res, next) => {
+
+    Artist
+        .find()
+        .then(artists => {
+            res.render('control-panel/list-artist', { artists })
+        })
+        .catch(err => next(error))
+
+})
+router.post('/artist/:artistId/delete', (req, res, next) => {
+
+    const { artistId } = req.params
+
+    Artist
+        .findByIdAndDelete(artistId)
+        .then(() => {
+            res.redirect('/list-artist')
+        })
+        .catch(err => next(error))
+})
+
+router.get('/artist/:artistId/edit', (req, res, next) => {
+
+    const { artistId } = req.params
+
+    Artist
+        .findById(artistId)
+        .then(artist => {
+            res.render('control-panel/edit-artist', artist)
+        })
+        .catch(err => next(error))
+})
+
+router.post('/artist/:artistId/edit', (req, res, next) => {
+
+    const { artistId } = req.params
+    const { name, searchParams } = req.body
+
+    Artist
+        .findByIdAndUpdate(artistId, { name, searchParams }, { new: true })
+        .then(() => {
+            res.redirect('/list-artist')
+        })
+        .catch(err => next(error))
+})
+
 
 router.get('/create-collection', (req, res, next) => {
 
@@ -81,6 +129,31 @@ router.post('/create-collection', (req, res, next) => {
             res.redirect(`/collections`)
         })
         .catch(err => next(err))
+<<<<<<< HEAD
+})
+
+router.get('/comments', (req, res, next) => {
+
+    Comments
+        .find()
+        .populate('owner')
+        .then(comment => {
+            res.render('comments/comments', { comment })
+        })
+        .catch(err => next(err))
+})
+
+router.post('/comments/:id/delete', (req, res, next) => {
+    const { id } = req.params
+
+    Comments
+        .findByIdAndRemove(id)
+        //.populate('owner')
+        .then(() => {
+            res.redirect('/comments')
+        })
+=======
+>>>>>>> 1ce3c0a1d416a221720cb02b04fcaf35bb5aca46
 })
 
 router.get('/comments', (req, res, next) => {
@@ -106,3 +179,4 @@ router.post('/comments/:id/delete', (req, res, next) => {
 })
 
 module.exports = router
+

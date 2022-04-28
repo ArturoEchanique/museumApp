@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Artist List</h1>
+
+    {{#each artists}}
+    <div class="row">
+        <h5>Artist Name: {{name}} | Search Params: {{searchParams}}</h3>
+            <div class="col-md-4">
+                <a href="/artist/{{id}}/edit"><button class="btn btn-dark" type="submit">Edit Artist</button></a>
+            </div><br>
+            <div class="col-md-4">
+                <form action="/artist/{{_id}}/delete" method="POST">
+                    <button class="btn btn-dark" type="submit">Delete Artist</button>
+                </form>
+            </div>
+    </div>
+    <hr>
+    {{/each}}
+    <hr>
+    <div class="col-md-4">
+        <a href="/create-artist" class="btn btn-dark">Create New Artist</a>
+    </div>
+</div>
+</div>
