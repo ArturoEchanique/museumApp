@@ -1,5 +1,5 @@
-<div class="container">
-    <h3 id="titU">Ususarios</h3>
+<div class="container userDetailsMain">
+    <h3 id="titU">Users</h3>
     <div class="row">
         <div class="card col-6" style="width: 18rem;">
             <img src="{{user.profileImg}}" class="card-img-top" alt="#">
@@ -15,19 +15,15 @@
             
             {{#if isUser }}
             <form action="/users/{{user.id}}/setRole/MODERATOR" method="POST">
-                <button class="btn btn-primary">Hacer Moderador</button>
+                <button class="btn btn-primary">Make moderator</button>
             </form>
             {{/if}}
             {{#if isModerator}}
             <form action="/users/{{user.id}}/setRole/USER" method="POST">
-                <button class="btn btn-primary">Hacer Usuario</button>
+                <button class="btn btn-primary">Make user</button>
             </form>
             {{/if}}
-            
-
-            {{!-- {{/if}} --}}
         </div>
-        <h3>favorite Arts</h3>
 
     </div>
 

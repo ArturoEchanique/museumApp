@@ -24,7 +24,7 @@ function getVideoId() {
 //                 iteration++
 //                 player = new YT.Player('player'+iteration, {
 //                     height: '300',
-//                     width: '540',
+//                     width: '480',
 //                     videoId: apiVideoId,
 //                     events: {
 //                         'onReady': onPlayerReady,
