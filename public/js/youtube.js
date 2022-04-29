@@ -23,8 +23,8 @@ function getVideoId() {
 //             data.forEach(apiVideoId => {
 //                 iteration++
 //                 player = new YT.Player('player'+iteration, {
-//                     height: '360',
-//                     width: '640',
+//                     height: '300',
+//                     width: '540',
 //                     videoId: apiVideoId,
 //                     events: {
 //                         'onReady': onPlayerReady,
