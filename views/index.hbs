@@ -1,103 +1,52 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!-- The video -->
 <video autoplay muted loop id="myVideo">
     <source src="./videos/museum.mp4" type="video/mp4">
 </video>
-
-
-{{!-- <div class="content">
-    <button id="myBtn" onclick="myFunction()">Pause</button>
-</div> --}}
 <div class="homeHead">
     <section class="boot-elemant-bg py-md-5 py-4">
         <div class="container position-relative py-md-5 py-0">
             <div class="row">
                 <div class="col-lg-8">
-                    <h2 class="display-3 font-weight-bold text-white">17 travel inventions we need right now </h2>
-                    <p class="f-16 mb-4 text-white">I am text block. Click edit button to change this text. Lorem ipsum
-                        dolor sit amet,
-                        consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                        leo.
-                    </p>
+                    <h2 class="display-3 font-weight-bold text-white">ESCAPE WITH THE LAMUSSE</h2>
                     <button type="button" class="btn btn-info">Book tickets</button>
                 </div>
             </div>
         </div>
     </section>
 </div>
-
-
-
-<section class="boot-elemant-bg py-md-5 py-4"
-    style="background-image: url(https://via.placeholder.com/1920/09f.png/fff);">
+{{#each collections}}
+<section class="boot-elemant-bg py-md-5 py-4 collection" style="background-image: url({{bgImage}});">
     <div class="container position-relative py-md-5 py-0">
         <div class="row">
             <div class="col-lg-8">
-                <span class="text-white text-uppercase">Travel </span>
-                <h2 class="text-white display-3 font-weight-bold">17 travel inventions we need right now </h2>
-                <p class="f-w-16 mb-4">I am text block. Click edit button to change this text. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                    leo.</p>
-                <a href="#" class="btn btn-outline-white btn-lg px-4"> Read More </a>
+                <h2 class="text-white display-3 font-weight-bold">{{title}}</h2>
+                <p class="f-w-16 mb-4">{{description}}</p>
+                <a href="/collections/{{id}}" class="btn btn-outline-white btn-lg px-4"> Ver colección </a>
             </div>
         </div>
     </div>
     <div class="elemant-bg-overlay black"></div>
 </section>
-<section class="boot-elemant-bg gradient-primary py-md-5 py-4">
-    <div class="container position-relative py-md-5 py-0">
-        <div class="row">
-            <div class="col-lg-8">
-                <span class="text-white text-uppercase">Travel </span>
-                <h2 class="text-white display-3 font-weight-bold">17 travel inventions we need right now </h2>
-                <p class="f-w-16 mb-4">I am text block. Click edit button to change this text. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                    leo.</p>
-                <a href="#" class="btn btn-outline-white btn-lg px-4"> Read More </a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="boot-elemant-bg gradient-primary py-md-5 py-4">
-    <div class="container position-relative py-md-5 py-0">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-4 text-right">
-                <span class="text-white text-uppercase">Travel </span>
-                <h2 class="text-white display-3 font-weight-bold">17 travel inventions we need right now </h2>
-                <p class="f-w-16 mb-4">I am text block. Click edit button to change this text. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                    leo.</p>
-                <a href="#" class="btn btn-outline-white btn-lg px-4"> Read More </a>
-            </div>
-        </div>
-    </div>
-</section>
-
+{{/each}}
 <section class="boot-elemant gradient-primary py-md-5 py-4">
     <div class="container position-relative py-md-5 py-0">
         <div class="boot-block pb-md-5 pb-4 text-center">
-            <span class="text-uppercase text-white">boot </span>
-            <h2 class="display-4 text-white font-weight-bold">Articles</h2>
-            <p class="f-w-16 mb-4">Brouse latest tips from our blog </p>
+            <h2 class="display-4 text-white font-weight-bold">Highlighted art</h2>
+            <p class="f-w-16 mb-4">some of the most popular works of art </p>
         </div>
         <div class="row">
             {{#each artItems}}
             <div class="col-lg-4">
                 <div class="boot-card"><a href="/collections/{{../collection.id}}/art/{{apiId}}"><img src="{{image}}" alt="Image articles" class="img-fluid"></a>
                     <div class="boot-caption py-4 px-3">
-
                         <h3 class="text-dark  mb-md-2"><a href="blog-details.html" class="text-dark">{{title}}</a></h3>
                         <div class="boot-meta">
                             <h4 class="font-weight-normal">Jan 10, 2018 by <a href="#" class="text-primary">Boot
                                     Brown</a></h4>
                         </div>
-
                         <p class="f-14 mb-0">{{comments.[1].text}}</p>
-
                         <p class="f-16 mb-0"></p>
                     </div>
                 </div>

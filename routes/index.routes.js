@@ -15,14 +15,20 @@ const router = require("express").Router();
 
 router.get("/", (req, res, next) => {
   const collectionData = {}
+  let highlightedCollection = undefined
   collectionData.artItems = []
   const { collectionId } = req.params
+
   Collection
-    .findOne()
-    .populate("artItemsList")
-    .then(collection => {
-      collectionData.collection = collection
-      let artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
+    .find()
+    .then(collections => {
+      collectionData.collections = collections.slice(0,2)
+      return Collection.find().populate("artItemsList")
+    })
+    .then(collections => {
+      highlightedCollection = collections[Math.floor(Math.random() * collections.length)]
+      collectionData.collection = highlightedCollection
+      let artApiIds = highlightedCollection.artItemsList.map(artItem => artItem.apiId)
       let maxItemsToSlice = artApiIds.length
       if (maxItemsToSlice % 2 == 1) maxItemsToSlice -= 1
       artApiIds = artApiIds.slice(0, 3)
@@ -39,15 +45,15 @@ router.get("/", (req, res, next) => {
       console.log("el objeto es..", artItems)
       collectionData.artItems = artItems
       console.log("ESTO---------------------", collectionData.artItems[0])
-      collectionData.artItems.forEach(artItem =>{
+      collectionData.artItems.forEach(artItem => {
         collectionData.artApiItems.forEach(artApiItem => {
-          if(artItem.apiId == artApiItem.objectID) {
+          if (artItem.apiId == artApiItem.objectID) {
             artItem.image = artApiItem.primaryImageSmall
             artItem.title = artApiItem.title
           }
         })
       })
-      console.log("la colection data es",collectionData.collection._id)
+      console.log("la colection data es", collectionData.collection._id)
       res.render("index", collectionData)
     })
     .catch(err => next(err))
