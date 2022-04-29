@@ -22,7 +22,7 @@
     margin-bottom: 220px;
     margin-left: 250px;
     margin-right: 250px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 #login label {
@@ -134,6 +134,17 @@
     margin: 20px;
 }
 
+.artBig{
+    width: 100%;
+    margin-right: 30px;
+    margin-top: 50px;
+    padding: 0px 50px 0px 0px;
+}
+.artwork #map{
+    margin: 50px 50px 50px 25px;
+    height: 500px;
+}
+
 #users {
     background-color: transparent;
     color: black;
@@ -172,7 +183,7 @@ body {
 }
 
 #control h1 {
-    color: #ddd;
+    color: rgb(79, 79, 79);
 }
 
 .presentationMain p {
@@ -401,11 +412,75 @@ h6,
 }
 
 #control {
-    margin-bottom: 30px;
+    margin-bottom: 70px;
 }
 
 
 /* NO TOCAR ARRIBA*/
 
 
-/* ----------------CARROUSEL------------------- */
+/* ----------------COMMENTS------------------- */
+
+
+/* body {
+    background: #eee
+} */
+
+.date {
+    font-size: 17px
+}
+
+.comment-text {
+    font-size: 18px
+}
+
+.fs-12 {
+    font-size: 18px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #00a18c
+}
+
+.cursor:hover {
+    color: rgb(0, 144, 144)
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}
+
+.rounded-circle{
+
+    margin-right: 15px;
+}
+
+.comment-text{
+    padding-left: 54px;
+}
+
+.commentsMain{
+    padding-bottom: 70px;
+}
+
+.commentsMain .btn{
+    background-color: #00a18c;
+    padding: 10px;
+    margin: 10px;
+    border-style: none;
+}
+
+.alert{
+    background-color: rgba(249, 56, 56, 0.383);
+    text-align: center;
+    font-size: 1.3em;
+    align-items: center;
+}

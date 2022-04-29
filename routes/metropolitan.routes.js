@@ -95,11 +95,19 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     artItemData.inCollection = true
     artItemData.toxic = req.query.toxic
     artItemData.message = req.query.message
+    artItemData.userProfileImg = req.session.currentUser.profileImg
 
     ArtItem
         .findOne({ 'apiId': artApiId })
-        .populate("comments")
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'owner',
+                model: 'User'
+            }
+        })
         .then(artItem => {
+            console.log("el username es...", artItem.comments[0].owner)
             artItemData.artItem = artItem
             artItemData.artItem.comments.forEach(comment => {
                 if (comment.state == "APPROVED") comment.isApproved = true
@@ -119,8 +127,8 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
-    const { artId } = req.params
+router.post('/collections/:collectionId/art/:artId/favorite', isLoggedIn, (req, res, next) => {
+    const { collectionId, artId } = req.params
     const { artApiId } = req.body
     const userId = req.session.currentUser._id
 
@@ -133,7 +141,7 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
                         return User.findByIdAndUpdate(userId, { $push: { favoriteItems: artId } })
                     })
                     .then(user => {
-                        res.redirect(`/art/${artApiId}`)
+                        res.redirect(`/collections/${collectionId}/art/${artApiId}`)
                     })
                     .catch(err => console.log(err))
             } else {
@@ -144,7 +152,7 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
                     })
                     .then(user => {
                         console.log("el usuario actualizado es: ", user)
-                        res.redirect(`/art/${artApiId}`)
+                        res.redirect(`/collections/${collectionId}/art/${artApiId}`)
                     })
                     .catch(err => console.log(err))
             }

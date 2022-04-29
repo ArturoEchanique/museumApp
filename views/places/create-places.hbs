@@ -1,9 +1,9 @@
-<div class="container">
+{{!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h1>Agrega un museo</h1>
             <hr>
-            <form action="/createplaces" method="POST">
+            <form action="/create-places" method="POST">
 
                 <div class="mb-3 row">
                     <div class="col">
@@ -43,4 +43,34 @@
             </form>
         </div>
     </div>
+</div> --}}
+
+<video autoplay muted loop id="myVideo">
+    <source src="./videos/museum.mp4" type="video/mp4">
+</video>
+<div class="container">
+    <form class="row g-3" id="login" action="/create-places" method="POST">
+        <h3>Create gallery</h3>
+        <hr>
+        <div class="col-md-12">
+            <label for="name" class="form-label">Gallery name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+ 
+        </div>
+        <div class="col-md-6">
+            <label for="lat" class="form-label">Latitude</label>
+            <input type="text" class="form-control" id="lat" name="lat" required>
+        </div>
+        <div class="col-md-6">
+                <label for="long" class="form-label">Longitude</label>
+                <input type="text" class="form-control" id="long" name="long" required>
+        </div>
+        <div class="col-md-12">
+            <label for="description" class="form-label">Gallery description</label>
+            <input type="text" class="form-control" id="description" name="description">
+        </div>
+        <div class="col-12" style="width: 25px;">
+            <button class="btn btn-secondary" id="btn" type="submit">Create</button>
+        </div>
+    </form>
 </div>

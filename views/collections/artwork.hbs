@@ -1,13 +1,18 @@
-<div class="container">
-    <h1>Item Artwork</h1>
-    <p>N likes: {{artItem.likes}}</p>
-    <img src="{{apiData.primaryImageSmall}}" alt="">
+<div class="container mt-5 artwork">
+    <h1>{{apiData.title}}</h1>
+    <hr>
+    {{!-- <p>N likes: {{artItem.likes}}</p> --}}
+    <div class="row">
+        <div class="col-md-8">
+            <img class="artBig" src="{{apiData.primaryImage}}" alt="">
+        </div>
+        <div class="col-md-4">
+            <figure id="map"></figure>
+        </div>
+    </div>
 
 
- 
-    <figure id="map"></figure>
-
-    <form action="/art/{{artItem.id}}/favorite" method="POST">
+    <form action="/collections/{{collectionId}}/art/{{artItem.id}}/favorite" method="POST">
         {{#if alreadyLiked}}
         <button class="btn btn-outline-dark" type="submit">Favorite ALREADY</button>
         {{else}}
@@ -18,10 +23,11 @@
     {{#if inCollection}}
     <a class="nav-link" id="presentation" href="/collections/">Back to collection</a>
     {{/if}}
-    <h2>COMENTARIOS</h2><h2>{{message}}</h2>
+    <h2>{{message}}</h2>
+
+
     <form action="/art/{{artItem.id}}/comment" method="POST">
-        <textarea id="w3review" name="comment" rows="4" cols="50" placeholder="escribe tu comentario">
-        </textarea>
+        <textarea id="w3review" name="comment" rows="4" cols="50" placeholder="escribe tu comentario"></textarea>
         <button id="createhBtn" type="submit">Send comment</button>
         <input type="hidden" id="collectionId" name="collectionId" value={{collectionId}}>
         <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
@@ -33,12 +39,66 @@
     {{/each}}
 </div>
 
+
+<div class="container mt-5 commentsMain">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column comment-section">
+                {{#each artItem.comments}}
+                {{#if isApproved}}
+                <div class="bg-white p-2">
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle"
+                            src={{owner.profileImg}} width="40">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span
+                                class="d-block font-weight-bold name">{{owner.username}}</span><span class="date text-black-50">Shared publicly - Apr 2022</span>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="comment-text">{{text}}</p>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+
+                <div class="bg-white">
+                    <div class="d-flex flex-row fs-12">
+                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>
+                        </div>
+                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i>
+                        </div>
+                        <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                    </div>
+                </div>
+                <form action="/art/{{artItem.id}}/comment" method="POST">
+                    {{!-- <textarea id="w3review" name="comment" rows="4" cols="50" placeholder="escribe tu comentario"></textarea> --}}
+                    {{!-- <button id="createhBtn" type="submit">Send comment</button> --}}
+                    <input type="hidden" id="collectionId" name="collectionId" value={{collectionId}}>
+                    <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
+                
+                <div class=" p-2">
+                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle"
+                            src={{userProfileImg}} width="40"><textarea
+                            class="form-control ml-1 shadow-none textarea" name="comment"></textarea></div>
+                    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="submit">Post
+                            comment</button></div>
+                            {{#if isApproved}}
+                            <div class="alert">{{message}}</div>
+                            {{/if}}
+                            
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXfnCjCNoZ5DFVcicZ182oaJT54TZPb4&libraries=places"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/places-maps.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXfnCjCNoZ5DFVcicZ182oaJT54TZPb4&callback=initMap"></script>
-    {{!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
 <script src="/js/commentDLFilter.js"></script> --}}

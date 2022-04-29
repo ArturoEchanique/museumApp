@@ -1,24 +1,24 @@
 <video autoplay muted loop id="myVideo">
     <source src="./videos/museum.mp4" type="video/mp4">
 </video>
-<form class="row g-3" id="sing-up" action="/create-artist" method="POST">
-    <h3>Create Artist</h3>
-    <div class="col-md-4">
-        <label for="name" class="form-label">Artist Name</label>
-        <input type="text" class="form-control" id="name" name="name">
-    </div>
-    <div class="col-md-4">
-        <label for="searchParams" class="form-label">Search Params</label>
-        <input type="text" class="form-control" id="searchParams" name="searchParams">
-    </div>
-    <div class="col-12">
-        <button class="btn btn-dark" type="submit">Create Artist</button>
-    </div>
-</form>
+
+<video autoplay muted loop id="myVideo">
+    <source src="./videos/museum.mp4" type="video/mp4">
+</video>
 <div class="container">
-    <div class="row g-3">
-        <div class="col-md-4">
-            <a href="/list-artist"><button class="btn btn-dark" type="submit">Artists List</button></a>
+    <form class="row g-3" id="login" action="/create-artist" method="POST">
+        <h3>Create Artist</h3>
+        <hr>
+        <div class="col-md-12">
+            <label for="name" class="form-label">Artist Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
-    </div>
+        <div class="col-md-12">
+            <label for="searchParams" class="form-label">Search Params</label>
+            <input type="text" class="form-control" id="searchParams" name="searchParams" required>
+        </div>
+        <div class="col-12" style="width: 25px;">
+            <button class="btn btn-secondary" id="btn" type="submit">Create</button>
+        </div>
+    </form>
 </div>

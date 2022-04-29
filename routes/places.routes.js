@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const ArtGallery = require('../models/ArtGallery')
 
-router.get('/createplaces', (req, res, next) => {
+router.get('/create-places', (req, res, next) => {
 
     res.render('places/create-places')
 })
 
-router.post('/createplaces', (req, res, next) => {
+router.post('/create-places', (req, res, next) => {
     const { name, lat, long, description } = req.body
 
     ArtGallery
