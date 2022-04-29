@@ -1,5 +1,5 @@
 <div class="container-bg">
-    <h3 id="titU">Ususarios</h3>
+    <h3 id="titU">Users</h3>
     <div class="row">
         {{#each user}}
         <div id="users" class="card col-6" style="width: 18rem;">
@@ -9,13 +9,13 @@
                 <p class="card-text">{{email}}</p>
                 <p class="card-text">{{role}}</p>
                 <p class="card-text">{{favorites}}</p>
-                <a href="/users/{{id}}" class="btn btn-dark">Ver Perfil</a>
+                <a href="/users/{{id}}" class="btn btn-dark">View profile</a>
                 <hr>
                 {{!-- {{#if roleCheck}} --}}
                 <div id="editButton">
-                    <a href="/users/{{id}}/edit" class="btn btn-ligth">Editar</a>
+                    <a href="/users/{{id}}/edit" class="btn btn-ligth">Edit</a>
                     <form action="/users/{{id}}/delete" method="POST">
-                        <button class="btn btn-ligth">Eliminar</button>
+                        <button class="btn btn-ligth">Delete</button>
                     </form>
                 </div>
 

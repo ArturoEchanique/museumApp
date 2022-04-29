@@ -74,16 +74,20 @@
 
 #generate {
     color: #000;
-    background-color: rgb(41, 40, 40);
+    background-color: rgb(0, 0, 0);
     padding: 10px;
     padding-bottom: 20px;
-    opacity: 0.7;
+    opacity: 0.8;
     font-size: large;
     margin: 60px;
     margin-left: 250px;
     margin-right: 250px;
     margin-bottom: 150px;
-    border-radius: 20px;
+    border-radius: 8px;
+}
+
+#generate .btn{
+    background-color: #00a18c;
 }
 
 #generate h2 {
@@ -134,13 +138,14 @@
     margin: 20px;
 }
 
-.artBig{
+.artBig {
     width: 100%;
     margin-right: 30px;
     margin-top: 50px;
     padding: 0px 50px 0px 0px;
 }
-.artwork #map{
+
+.artwork #map {
     margin: 50px 50px 50px 25px;
     height: 500px;
 }
@@ -388,7 +393,7 @@ h6,
     background-size: 116%;
 }
 
-.boot-card img{
+.boot-card img {
 
     width: 400px;
     height: 400px;
@@ -458,29 +463,75 @@ h6,
     resize: none
 }
 
-.rounded-circle{
+.rounded-circle {
 
     margin-right: 15px;
 }
 
-.comment-text{
+.comment-text {
     padding-left: 54px;
 }
 
-.commentsMain{
+.commentsMain {
     padding-bottom: 70px;
 }
 
-.commentsMain .btn{
+.commentsMain .btn {
     background-color: #00a18c;
     padding: 10px;
     margin: 10px;
     border-style: none;
 }
 
-.alert{
-    background-color: rgba(249, 56, 56, 0.383);
+.alert {
+    background-color: rgba(255, 224, 124, 0.383);
     text-align: center;
     font-size: 1.3em;
     align-items: center;
+}
+
+.success {
+    background-color: rgba(56, 249, 178, 0.383);
+    text-align: center;
+    font-size: 1.3em;
+    align-items: center;
+}
+
+.like {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin: 5px;
+}
+
+.like a {
+    margin-left: 30px;
+    padding: 5px;
+}
+
+.like button {
+
+}
+
+.play{
+    display: flex;
+    flex-direction: row;
+    width: 50px;
+}
+
+.imagesGrid img{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin: 50px;
+}
+
+.imagesGrid{
+    padding-bottom: 200px;
+}
+
+.collectionMain{
+    padding-top: 100px;
 }

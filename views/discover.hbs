@@ -2,10 +2,6 @@
     <h2 class="display-3 font-weight-bold">{{name}}</h2>
     <hr>
 </div>
-<!--slide end-->
-
-
-{{!-- AQUI EMPIEZA --}}
 <div class="presentationMain">
     <div class="row">
         <div class="col-md-5">
@@ -17,15 +13,24 @@
         <div class="col-md-5">
             <img class="presentationArt" src="https://images.metmuseum.org/CRDImages/ad/original/DP167126.jpg"
                 alt="First slide">
-                <button id="start" class="btn btn-success mt-5 me-3">Start</button>
-                <button id="cancel" class="btn btn-danger mt-5 me-3">Cancel</button>
+
         </div>
+        <div class="play">
+            <button id="start" class="btn btn-dark mt-5 me-3">Start</button>
+            <button id="cancel" class="btn btn-dark mt-5 me-3">Pause</button>
+        </div>
+
     </div>
 </div>
-{{#each artItems}}
-is this
-<a href="/collections/{{../collection.id}}/art/{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
-{{/each}}
+<div class="container imagesGrid">
+    <div class="row">
+        {{#each artItems}}
+        <div class="col-md-4">
+            <a href="/collections/{{../collection.id}}/art/{{objectID}}"><img src="{{primaryImageSmall}}" alt=""></a>
+        </div>
+        {{/each}}
+    </div>
+</div>
 
 
 

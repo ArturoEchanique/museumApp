@@ -4,13 +4,13 @@
         {{#each comment}}
         <div id="users" class="card col-6" style="width: 18rem;">
             <div class="card-body">
-                {{#each owner}}
+   
                 <h5 class="card-title">{{username}}</h5>
-                {{/each}}
+
                 <p class="card-text">{{text}}</p>
-                {{#each owner}}
+
                 <a href="/users/{{id}}" class="btn btn-dark">Ver Perfil</a>
-                {{/each}}
+
                 <hr>
                 <div id="editButton">
                     <a href="/users/{{id}}/edit" class="btn btn-ligth">Editar</a>

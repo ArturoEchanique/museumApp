@@ -93,7 +93,9 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     req.session.currentUser ? userId = req.session.currentUser._id : userId = undefined
     artItemData.collectionId = collectionId
     artItemData.inCollection = true
+    artItemData.hasCommented = req.query.commented
     artItemData.toxic = req.query.toxic
+    console.log(artItemData.toxic)
     artItemData.message = req.query.message
     artItemData.userProfileImg = req.session.currentUser.profileImg
 
@@ -177,7 +179,7 @@ router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
             predictions.forEach((prediction) => {
                 console.log(prediction.results[0].match)
                 if (prediction.results[0].match) {
-                    modMessage += "Your comment has " + prediction.label
+                    modMessage += "Your comment has " + prediction.label +". "
                     console.log("Your comment has ", prediction.label)
                     toxicComment = true
                 }
@@ -193,7 +195,7 @@ router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
             return ArtItem.findByIdAndUpdate(artId, { $push: { comments: comment.id } })
         })
         .then((artItem) => {
-            res.redirect(`/collections/${collectionId}/art/${artApiId}?toxic=${toxicComment}&message=${modMessage}`)
+            res.redirect(`/collections/${collectionId}/art/${artApiId}?commented=true&toxic=${toxicComment}&message=${modMessage}`)
         })
 })
 

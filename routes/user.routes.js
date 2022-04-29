@@ -20,10 +20,14 @@ router.get('/users/:userID', (req, res, next) => {
     User
         .findById(userID)
         .then(user => {
-            isModerator = (user.role === "MODERATOR")
-            isUser = (user.role === "USER")
+            if(user){
+                isModerator = (user.role === "MODERATOR")
+                isUser = (user.role === "USER")
 
-            res.render('user/user-detail', { user, isModerator, isUser })
+                res.render('user/user-detail', { user, isModerator, isUser })
+            }
+            else res.redirect("/users")
+            
         })
         .catch(error => next(error))
 })
