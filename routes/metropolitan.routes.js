@@ -40,7 +40,7 @@ router.get('/discover', (req, res, next) => {
         .then(({ artistImage }) => {
             return Collection.findOne({ title: artistData.name }).populate("artItemsList")
         })
-        
+
         .then(collection => {
             const artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
             const promisesArr = artApiIds.map(id => metAPI.getOneArtwork(id))
@@ -90,15 +90,21 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     const { artApiId, collectionId } = req.params
     const artItemData = {}
     let userId
-    req.session.currentUser ?  userId = req.session.currentUser._id : userId = undefined
+    req.session.currentUser ? userId = req.session.currentUser._id : userId = undefined
     artItemData.collectionId = collectionId
     artItemData.inCollection = true
+    artItemData.toxic = req.query.toxic
+    artItemData.message = req.query.message
 
     ArtItem
         .findOne({ 'apiId': artApiId })
         .populate("comments")
         .then(artItem => {
             artItemData.artItem = artItem
+            artItemData.artItem.comments.forEach(comment => {
+                if (comment.state == "APPROVED") comment.isApproved = true
+
+            })
             return User.findById(userId)
         })
         .then(user => {
@@ -146,20 +152,40 @@ router.post('/art/:artId/favorite', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
-
-    commentFilter.filterComment("hello")
-
     const { artId } = req.params
     const { comment, collectionId, artApiId } = req.body
     const user = req.session.currentUser
-    console.log("commenting ", req.body.comment)
-    Comment
-        .create({ text: comment, owner: user, state: "PENDANT" })
+    let toxicComment = false
+    let commentState = "PENDANT"
+    let modMessage = ""
+
+    commentFilter.filterComment("hello")
+        .then((model) => {
+            const sentences = [comment];
+            return model.classify(sentences)
+        })
+        .then(predictions => {
+            console.log("predictions are ready", predictions)
+            predictions.forEach((prediction) => {
+                console.log(prediction.results[0].match)
+                if (prediction.results[0].match) {
+                    modMessage += "Your comment has " + prediction.label
+                    console.log("Your comment has ", prediction.label)
+                    toxicComment = true
+                }
+            })
+            if (toxicComment) commentState = "REJECTED"
+            else {
+                commentState = "APPROVED"
+                modMessage = "Your comment was approved"
+            }
+            return Comment.create({ text: comment, owner: user, state: commentState })
+        })
         .then(comment => {
             return ArtItem.findByIdAndUpdate(artId, { $push: { comments: comment.id } })
         })
         .then((artItem) => {
-            res.redirect(`/collections/${collectionId}/art/${artApiId}`)
+            res.redirect(`/collections/${collectionId}/art/${artApiId}?toxic=${toxicComment}&message=${modMessage}`)
         })
 })
 

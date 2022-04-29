@@ -18,17 +18,18 @@
     {{#if inCollection}}
     <a class="nav-link" id="presentation" href="/collections/">Back to collection</a>
     {{/if}}
-    <h2>COMENTARIOS</h2>
+    <h2>COMENTARIOS</h2><h2>{{message}}</h2>
     <form action="/art/{{artItem.id}}/comment" method="POST">
         <textarea id="w3review" name="comment" rows="4" cols="50" placeholder="escribe tu comentario">
         </textarea>
         <button id="createhBtn" type="submit">Send comment</button>
         <input type="hidden" id="collectionId" name="collectionId" value={{collectionId}}>
         <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
-        artItemData.collectionId
     </form>
     {{#each artItem.comments}}
+    {{#if isApproved}}
     <p>{{text}}</p>
+    {{/if}}
     {{/each}}
 </div>
 
@@ -38,4 +39,6 @@
 <script src="/js/places-maps.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJXfnCjCNoZ5DFVcicZ182oaJT54TZPb4&callback=initMap"></script>
-{{!-- <script src="/js/commentDLFilter.js"></script> --}}
+    {{!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
+<script src="/js/commentDLFilter.js"></script> --}}
