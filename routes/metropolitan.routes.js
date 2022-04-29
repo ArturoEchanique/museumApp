@@ -26,6 +26,7 @@ router.get('/discover', (req, res, next) => {
         .then(artists => {
             const artist = artists[Math.floor(Math.random() * artists.length)]
             artistData.name = artist.name
+            artistData.collectionId = undefined
             nameArr = artist.searchParams.split("-")
             return wikipediaAPI
                 .getOneArtist(nameArr)
@@ -40,8 +41,8 @@ router.get('/discover', (req, res, next) => {
         .then(({ artistImage }) => {
             return Collection.findOne({ title: artistData.name }).populate("artItemsList")
         })
-
         .then(collection => {
+            artistData.collectionId = collection.id
             const artApiIds = collection.artItemsList.map(artItem => artItem.apiId)
             const promisesArr = artApiIds.map(id => metAPI.getOneArtwork(id))
             return Promise.all(promisesArr)
@@ -97,7 +98,7 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
     artItemData.toxic = req.query.toxic
     console.log(artItemData.toxic)
     artItemData.message = req.query.message
-    artItemData.userProfileImg = req.session.currentUser.profileImg
+    artItemData.userProfileImg = req.session.currentUser?.profileImg
 
     ArtItem
         .findOne({ 'apiId': artApiId })
@@ -109,7 +110,6 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
             }
         })
         .then(artItem => {
-            console.log("el username es...", artItem.comments[0].owner)
             artItemData.artItem = artItem
             artItemData.artItem.comments.forEach(comment => {
                 if (comment.state == "APPROVED") comment.isApproved = true
@@ -179,7 +179,7 @@ router.post('/art/:artId/comment', isLoggedIn, (req, res, next) => {
             predictions.forEach((prediction) => {
                 console.log(prediction.results[0].match)
                 if (prediction.results[0].match) {
-                    modMessage += "Your comment has " + prediction.label +". "
+                    modMessage += "Your comment has " + prediction.label + ". "
                     console.log("Your comment has ", prediction.label)
                     toxicComment = true
                 }
