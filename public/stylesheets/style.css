@@ -21,8 +21,8 @@
     font-size: large;
     margin-top: 160px;
     margin-bottom: 220px;
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 10%;
+    margin-right: 10%;
     border-radius: 10px;
 }
 
@@ -57,6 +57,9 @@
     justify-content: center;
     align-items: center;
 
+}
+.footerText{
+    padding: 20px;
 }
 
 #collection {
@@ -172,14 +175,16 @@ body {
 /* NO TOCAR ABAJO*/
 
 .presentationArt {
-    height: 70vh;
+    width: 90%;
     margin-bottom: 80px;
+    padding: 20px 0px;
 }
 
 .presentationMain {
     background-color: rgb(255, 255, 255);
     margin: 0;
-    padding: 100px 200px;
+    padding: 10% 10%;
+    
     width: 100%;
     /* background-image: url("./images/presentationBg2.jpg");
     background-size: cover;*/
@@ -210,17 +215,21 @@ body {
 
 .videoLayout {
     background-color: white;
-    padding: 100px 150px;
+    padding: 100px 5%;
     
 }
 .videoLayout p{
     background-color: white;
     padding-bottom: 60px;
-    margin-left: 150px;
+    /* margin-left: 150px; */
 }
 
 .videoLayout h2 {
-    margin-left: 150px;
+    /* margin-left: 150px; */
+}
+
+.video{
+    margin: 20px 0px;
 }
 
 
