@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const Artist = require('../models/Artist.model')
 
 const Youtube = require('../services/YoutubeHandler')
 const youtube = new Youtube()
@@ -16,14 +17,21 @@ const youtube = new Youtube()
 
 router.get("/api/videos", (req, res, next) => {
 
-    youtube
-        .getSearch('renoir')
+    Artist
+        .find()
+        .then(artists => {
+            return artists[Math.floor(Math.random() * artists.length)]
+        })
+        .then(artist => {
+            console.log("el artista es..", artist)
+            return youtube.getSearch(artist.name)
+        })
         .then(({ data }) => {
             let dataItems = data.items.slice(0, 2)
             let videoIds = []
-            dataItems.forEach(dataItem =>{
-                 videoIds.push(dataItem.id.videoId)
-             })
+            dataItems.forEach(dataItem => {
+                videoIds.push(dataItem.id.videoId)
+            })
             res.json(videoIds)
         })
         .catch(error => next(error))

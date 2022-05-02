@@ -23,7 +23,7 @@
             <input type="hidden" id="artApiId" name="artApiId" value={{artItem.apiId}}>
         </form>
         {{#if inCollection}}
-        <a class="btn btn-dark" id="presentation" href="/collections/">Back to collection</a>
+        <a class="btn btn-dark" id="presentation" href="/collections/">Back to collections</a>
         {{/if}}
     </div>
 
@@ -49,16 +49,7 @@
                     {{/if}}
                     {{/each}}
 
-                    <div class="bg-white">
-                        <div class="d-flex flex-row fs-12">
-                            <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>
-                            </div>
-                            <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i>
-                            </div>
-                            <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span>
-                            </div>
-                        </div>
-                    </div>
+
                     <form action="/art/{{artItem.id}}/comment" method="POST">
                         {{!-- <textarea id="w3review" name="comment" rows="4" cols="50"
                             placeholder="escribe tu comentario"></textarea> --}}

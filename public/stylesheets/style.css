@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display',
-    serif;
+        serif;
     color: black;
 }
 
@@ -37,7 +37,7 @@
 
 #login button {
     margin: 25px 0px;
-    background-color: rgb(0, 188, 138);
+    background-color: rgb(2, 174, 204);
 }
 
 #login .form-check {
@@ -87,8 +87,9 @@
     border-radius: 8px;
 }
 
-#generate .btn{
-    background-color: #00a18c;
+#generate .btn {
+    background-color: rgb(2, 174, 204);
+    ;
 }
 
 #generate h2 {
@@ -171,7 +172,8 @@ body {
 /* NO TOCAR ABAJO*/
 
 .presentationArt {
-    height: 80vh;
+    height: 70vh;
+    margin-bottom: 80px;
 }
 
 .presentationMain {
@@ -193,6 +195,7 @@ body {
 }
 
 .presentationMain p {
+    padding-bottom: 0px;
     font-size: 1.35em;
 }
 
@@ -207,7 +210,17 @@ body {
 
 .videoLayout {
     background-color: white;
-    padding: 150px;
+    padding: 100px 150px;
+    
+}
+.videoLayout p{
+    background-color: white;
+    padding-bottom: 60px;
+    margin-left: 150px;
+}
+
+.videoLayout h2 {
+    margin-left: 150px;
 }
 
 
@@ -449,11 +462,11 @@ h6,
 }
 
 .name {
-    color: #00a18c
+    color: rgb(2, 174, 204);
 }
 
 .cursor:hover {
-    color: rgb(0, 144, 144)
+    color: rgb(2, 174, 204);
 }
 
 .cursor {
@@ -478,7 +491,7 @@ h6,
 }
 
 .commentsMain .btn {
-    background-color: #00a18c;
+    background-color: rgb(2, 174, 204);
     padding: 10px;
     margin: 10px;
     border-style: none;
@@ -510,17 +523,16 @@ h6,
     padding: 5px;
 }
 
-.like button {
+.like button {}
 
-}
-
-.play{
+.play {
     display: flex;
     flex-direction: row;
     width: 50px;
+    margin-bottom: 100px;
 }
 
-.imagesGrid img{
+.imagesGrid img {
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -529,14 +541,16 @@ h6,
     margin: 50px;
 }
 
-.imagesGrid{
-    padding-bottom: 200px;
+.imagesGrid {
+    padding-bottom: 100px;
 }
 
-.collectionMain{
+.collectionMain {
     padding-top: 100px;
 }
 
 .userDetailsMain {
     padding: 100px 0px;
 }
+
+p

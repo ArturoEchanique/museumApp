@@ -118,7 +118,7 @@ router.get('/collections/:collectionId/art/:artApiId', (req, res, next) => {
             return User.findById(userId)
         })
         .then(user => {
-            if (user.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
+            if (user?.favoriteItems.includes(artItemData.artItem.id)) artItemData.alreadyLiked = true
             else artItemData.alreadyLiked = false
             return artworkAPI.getOneArtwork(artApiId)
         })
